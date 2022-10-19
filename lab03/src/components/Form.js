@@ -1,45 +1,64 @@
 import { useState } from "react";
-import Date from "./Date";
+import DateInput from "./DateInput";
 import Errors from "./Errors";
-import ToDo from "./ToDo";
+import ToDoInput from "./ToDoInput";
 
 const Form = (props) => {
 
     const [ task, setTask ] = useState("");
-    const [ date, setDate ] = useState("");
+    const [ date, setDate ] = useState("yyyy-mm-dd");
 
     const [ taskError, setTaskError ] = useState("");
     const [ dateError, setDateError ] = useState("");
 
-    const validate = () => {
+    const validateTask = () => {
         if (task === "") {
-            setTaskError("Zadanie nie może być puste!")
+            setTaskError("Zadanie nie może być puste!");
+            return false;
         } else {
-            setTaskError("")
-        }
-        if (date === "") {
-            setDateError("Data nie może być pusta!")
+            setTaskError("");
+            return true;
+        };
+    };
+
+    const validateDate = () => {
+        if (date === "yyyy-mm-dd") {
+            setDateError("Data nie może być pusta!");
+            return false;
         } else {
-            setDateError("")
-        }
-        if (taskError === "" && dateError === "") {
+            const dateFromInput = new Date(date);
+            const today = new Date();
+            if (dateFromInput <= today) {
+                setDateError("Data musi być późniejsza niż dzisiaj!");
+                return false;
+            } else {
+                setDateError("");
+                return true;
+            }; 
+        };
+    };
+
+    const validate = () => {
+        const taskValidatedCorrectly = validateTask();
+        const dateValidatedCorrectly = validateDate();
+        if (taskValidatedCorrectly && dateValidatedCorrectly) {
             addToList();
-        }
-    }
+        };
+    };
 
     const addToList = () => {
-        props.setTaskList(props.taskList.concat(task + " " + date));
+        props.setTaskList(props.taskList.concat(date + ": " + task));
         setTask("");
-        setDate("");
-    }
+        setDate("yyyy-mm-dd");
+    };
 
     return (
-        <div>
+        <div id="form">
             Formularz:
-            <ToDo setTask={setTask} />
-            <Date setDate={setDate} />
+            <ToDoInput setTask={setTask} task={task} />
+            <DateInput setDate={setDate} date={date} />
+            <button id="add" onClick={validate}>Dodaj</button>
             <Errors taskError={taskError} dateError={dateError} />
-            <button onClick={validate}>Dodaj</button>
         </div>
     );
 };

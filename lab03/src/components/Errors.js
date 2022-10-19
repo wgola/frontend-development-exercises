@@ -1,10 +1,11 @@
 const Errors = (props) => {
+
     return (
-        <div>
+        <div id="errors">
             <p>{props.taskError}</p>
             <p>{props.dateError}</p>
         </div>
-    )
+    );
 }
 
 export default Errors;

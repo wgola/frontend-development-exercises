@@ -5,12 +5,15 @@ const App = () => {
 
     const [ taskList, setTaskList ] = useState([]);
 
+    const listItems = taskList.map((n, index) => <li key={index}>{n}</li>);
+
     return (
-        <div>
-            <div>Lista zadań: </div>
-            <ol>
-                {taskList.map(n => <li>{n}</li>)}
-            </ol>
+        <div id="app">
+            <div id="taskList">Lista zadań: 
+                <ul>
+                    {listItems}
+                </ul>
+            </div>
             <Form taskList={taskList} setTaskList={setTaskList} />
         </div>
     );
