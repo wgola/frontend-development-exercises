@@ -5,7 +5,7 @@ const App = () => {
 
     const [ taskList, setTaskList ] = useState([]);
 
-    const listItems = taskList.map((n, index) => <li key={index}>{n}</li>);
+    const listItems = taskList.map((n) => <li key={n}>{n}</li>);
 
     return (
         <div id="app">
