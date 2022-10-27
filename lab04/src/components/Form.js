@@ -1,4 +1,5 @@
 import { useState } from "react";
+import validate from "../utils/validators";
 import Errors from "./Errors";
 import CategoryInput from "./formComponents/CategoryInput";
 import DescriptionInput from "./formComponents/DescriptionInput";
@@ -18,6 +19,17 @@ const Form = () => {
     const [ count, setCount ] = useState("");
     const [ errors, setErrors ] = useState([]);
 
+    const onSubmit = () => {
+        const validator = validate(errors, setErrors);
+        validator("title", title);
+        // validator("price", price);
+        // validator("description", description);
+        // validator("category", category);
+        // validator("image", image);
+        // validator("rate", rate);
+        // validator("count", count);
+    }
+
     return (
         <div>
             <h3>Add new product: </h3>
@@ -27,8 +39,8 @@ const Form = () => {
             <CategoryInput category={category} setCategory={setCategory} />
             <ImageInput image={image} setImage={setImage} />
             <RatingInput rate={rate} count={count} setRate={setRate} setCount={setCount} />
-            <button>SUBMIT</button>
-            <Errors />
+            <button onClick={onSubmit}>SUBMIT</button>
+            <Errors errors={errors} />
         </div>
     )
 };
