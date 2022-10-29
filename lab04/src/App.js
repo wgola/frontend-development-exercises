@@ -7,17 +7,18 @@ function App() {
   
   const [ products, setProducts ] = useState([]);
   const [ addedProducts, setAddedProducts ] = useState([]);
+  const [ deletedProducts, setDeletedProducts ] = useState([]);
 
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
-      .then(res => setProducts([...res.data, ...addedProducts]))
-  }, [addedProducts])
+      .then(res => setProducts([...res.data, ...addedProducts].filter(product => !deletedProducts.includes(product.id))))
+  }, [addedProducts, deletedProducts]);
 
   return (
     <>
-      <Form />
-      <ProductList products={products} />
+      <Form addedProducts={addedProducts} setAddedProducts={setAddedProducts}/>
+      <ProductList products={products} setDeletedProducts={setDeletedProducts} />
     </>
   );
 }

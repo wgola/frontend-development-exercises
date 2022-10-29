@@ -1,20 +1,31 @@
-const validate = (errors, setErrors) => (field, value) => {
+const validator = (setErrors) => (field, value) => {
     
-    const clearError = () => setErrors([...errors.filter(error => error.id !== field)]);
+    const clearError = () => setErrors(errors => [...errors.filter(error => error.id !== field)]);
 
-    const addError = (type) => 
+    const addError = (type) => {
+        clearError();
         type === "number" ? 
-            setErrors([...errors, {"id": field, "msg": `${field} cannot be empty or less then 0!`}]) : 
-                setErrors([...errors, {"id": field, "msg": `${field} cannto be emmpty!`}]);
-
-    switch(field) {
-        case "price" || "rate" || "count": 
-            value === "" || value <= 0 ? addError("number") : clearError();
-            break;
-        default:
-            value === "" ? addError("string") : clearError();
-            break;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-    }
+            setErrors(errors => [...errors, {"id": field, "msg": `${field} cannot be empty or less then / equal 0!`}]) : 
+            setErrors(errors => [...errors, {"id": field, "msg": `${field} cannot be empty!`}]);
+    };
+        
+    if (field === "Price") {
+        if (value === "" || value <= 0) {
+            addError("number");
+            return false;
+        } else {
+            clearError();
+            return true;
+        };
+    } else {
+        if (value === "") {
+            addError("string");
+            return false;
+        } else {
+            clearError();
+            return true;
+        };   
+    };                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 };
 
-export default validate;
+export default validator;

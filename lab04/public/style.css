@@ -1,0 +1,25 @@
+input {
+    float: right;
+    margin-right: 170px;
+}
+
+.product {
+    border: 1px dotted black;
+    margin-bottom: 5px;
+}
+
+.description {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+#form {
+    float: left;
+    width: 50%;
+}
+
+#products {
+    float: left;
+    width: 50%;
+}
