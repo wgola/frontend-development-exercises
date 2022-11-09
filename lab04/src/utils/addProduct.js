@@ -4,7 +4,7 @@ const addProduct = (setAddedProduct, newProduct) => {
     axios
         .post("https://fakestoreapi.com/products", newProduct)
         .then(response => {
-            if (response.status === "200") {
+            if (response.status === 200) {
                 const addedProduct = response.data;
                 setAddedProduct(addedProducts => {
                     addedProduct.id += addedProducts.length;
