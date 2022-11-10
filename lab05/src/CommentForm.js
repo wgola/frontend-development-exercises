@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import submit from './utils/submit';
 import validate from './utils/validate';
 
-const CommentForm = ({ setAddedComments, setSubmitting }) => {
+const CommentForm = ({ setAddedComments, submitting, setSubmitting }) => {
     return (
         <Formik 
             initialValues={{
@@ -13,11 +13,18 @@ const CommentForm = ({ setAddedComments, setSubmitting }) => {
             validate={validate}
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={(values, { validateForm, resetForm }) => {
+            onSubmit={
+                (values, { validateForm, resetForm }) => {
                     setSubmitting(true);
-                    submit(values, setAddedComments, setSubmitting, validateForm, resetForm)
-                    }
-                }
+                    validateForm();
+                    submit(values)
+                    .then(res => {
+                        setAddedComments(addedComments => [res, ...addedComments]);
+                        setSubmitting(false);
+                        resetForm();
+                    })
+                    .catch(err => console.log(err));
+                }}
         >
             <Form className='form'>
                 <label htmlFor='name'>Name:</label>
@@ -31,7 +38,7 @@ const CommentForm = ({ setAddedComments, setSubmitting }) => {
                 <label htmlFor='body'>Body:</label>
                 <Field as="textarea" name='body' />
 
-                <button type='submit'>Submit</button>
+                <button type='submit' disabled={submitting}>Submit</button>
                 <button type='reset'>Reset</button>
             </Form>
         </Formik>

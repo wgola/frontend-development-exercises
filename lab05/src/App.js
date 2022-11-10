@@ -7,13 +7,10 @@ const App = () => {
     const [ submitting, setSubmitting ] = useState(false);
 
     return (
-        <div className="main">
-            {submitting ? <div className="loading">Loading...</div> : (
-                <>
-                    <CommentForm setAddedComments={setAddedComments} setSubmitting={setSubmitting} />
-                    <CommentsList addedComments={addedComments} />)
-                </>
-            )}
+        <div className="main">  
+            <CommentForm setAddedComments={setAddedComments} setSubmitting={setSubmitting} submitting={submitting} />
+            {submitting ? <div className="loading">Loading...</div> : null}
+            <CommentsList addedComments={addedComments} />
         </div>
     )
 };
