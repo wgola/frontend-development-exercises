@@ -4,11 +4,16 @@ import CommentsList from "./CommentsList";
 
 const App = () => {
     const [ addedComments, setAddedComments ] = useState([]);
-    
+    const [ submitting, setSubmitting ] = useState(false);
+
     return (
         <div className="main">
-            <CommentForm setAddedComments={setAddedComments} />
-            <CommentsList addedComments={addedComments} />
+            {submitting ? <div className="loading">Loading...</div> : (
+                <>
+                    <CommentForm setAddedComments={setAddedComments} setSubmitting={setSubmitting} />
+                    <CommentsList addedComments={addedComments} />)
+                </>
+            )}
         </div>
     )
 };

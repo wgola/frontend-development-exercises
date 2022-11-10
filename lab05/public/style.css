@@ -20,4 +20,10 @@
 .form button {
   width: 20%;
   font-size: 15px;
+}
+
+.loading {
+  font-size: 20px;
+  margin: 100px auto;
+  justify-self: center;
 }/*# sourceMappingURL=style.css.map */

@@ -1,7 +1,7 @@
 import axios from "axios";
 import randomInt from "./randomInt";
 
-const submit = (values, setAddedComments, validateForm, resetForm) => {
+const submit = (values, setAddedComments, setSubmitting, validateForm, resetForm) => {
     validateForm();
     const newComment = {...values};
     newComment.id = randomInt();
@@ -12,6 +12,7 @@ const submit = (values, setAddedComments, validateForm, resetForm) => {
         if (res.status === 201) {
             resetForm();
             setAddedComments(comments => [...comments, res.data]);
+            setSubmitting(false);
         } else console.log(res.status);
     })
     .catch(err => console.log(err));

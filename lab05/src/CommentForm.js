@@ -2,7 +2,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import submit from './utils/submit';
 import validate from './utils/validate';
 
-const CommentForm = ({ setAddedComments }) => {
+const CommentForm = ({ setAddedComments, setSubmitting }) => {
     return (
         <Formik 
             initialValues={{
@@ -14,7 +14,8 @@ const CommentForm = ({ setAddedComments }) => {
             validateOnBlur={false}
             validateOnChange={false}
             onSubmit={(values, { validateForm, resetForm }) => {
-                    submit(values, setAddedComments, validateForm, resetForm)
+                    setSubmitting(true);
+                    submit(values, setAddedComments, setSubmitting, validateForm, resetForm)
                     }
                 }
         >
