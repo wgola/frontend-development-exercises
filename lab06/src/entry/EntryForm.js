@@ -6,10 +6,10 @@ import shortUUID from "short-uuid";
 const EntryForm = ({ initialValues, entryID, setEntries }) => {
     const navigate = useNavigate()
     const validationSchema = Yup.object().shape({
-        name: Yup.string().required(),
-        teacher: Yup.string().required(),
-        day: Yup.string().required(),
-        time: Yup.string().required()
+        subject: Yup.string().required("Field required!").matches(/^[aA-zZ\s]+$/, "No special characters allowed!"),
+        teacher: Yup.string().required("Field required!").matches(/^[aA-zZ\s]+$/, "No special characters allowed!"),
+        day: Yup.string().required("Field required!"),
+        time: Yup.string().required("Field required!")
     });
     return (
         <Formik
@@ -34,25 +34,35 @@ const EntryForm = ({ initialValues, entryID, setEntries }) => {
             }
         }
         >
-            <Form>
-                <label htmlFor="name">Name: </label>
-                <Field type="text" name="name" />
-                <ErrorMessage name="name" />
+            <Form className="form">
+                <label htmlFor="subject">Subject: </label>
+                <Field type="text" name="subject" />
+                <ErrorMessage name="subject" />
 
                 <label htmlFor="teacher">Teacher: </label>
                 <Field type="text" name="teacher" />
                 <ErrorMessage name="teacher" />
                 
                 <label htmlFor="day">Day: </label>
-                <Field type="text" name="day" />
+                <Field as="select" name="day">
+                    <option value="">Choose day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </Field>
                 <ErrorMessage name="day" />
 
                 <label htmlFor="time">Time: </label>
                 <Field type="time" name="time" />
                 <ErrorMessage name="time" />
 
-                <button type="submit">Submit</button>
-                <button type="reset">Reset</button>
+                <div>
+                    <button type="submit">Submit</button>
+                    <button type="reset">Reset</button>
+                </div>
+
             </Form>
         </Formik>
     );

@@ -6,8 +6,8 @@ import * as Yup from 'yup';
 const NoteForm = ({ initialValues, entryID, setNotes, noteID }) => {
     const navigate = useNavigate();
     const validationSchema = Yup.object().shape({
-        title: Yup.string().required(),
-        content: Yup.string().required()
+        title: Yup.string().required("Field required!").matches(/^[aA-zZ\s]+$/, "No special characters allowed!"),
+        content: Yup.string().required("Field required!").matches(/^[aA-zZ\s]+$/, "No special characters allowed!")
     });
     return (
         <Formik
@@ -32,7 +32,7 @@ const NoteForm = ({ initialValues, entryID, setNotes, noteID }) => {
             }
         }
         >
-            <Form>
+            <Form className='form'>
                 <label htmlFor='title'>Title:</label>
                 <Field type='text' name='title' />
                 <ErrorMessage name='title' />
@@ -41,8 +41,11 @@ const NoteForm = ({ initialValues, entryID, setNotes, noteID }) => {
                 <Field as='textarea' name='content' />
                 <ErrorMessage name='content' />
 
-                <button type='submit'>Submit</button>
-                <button type='reset'>Reset</button>
+                <div>
+                    <button type='submit'>Submit</button>
+                    <button type='reset'>Reset</button>
+                </div>
+
             </Form>
         </Formik>
     ) 

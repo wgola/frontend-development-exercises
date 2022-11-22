@@ -3,7 +3,7 @@ import EntryForm from "./EntryForm";
 
 const AddEntry = ({ setEntries }) => {
     const initialValues = {
-        name: "",
+        subject: "",
         teacher: "",
         day: "",
         time: ""
