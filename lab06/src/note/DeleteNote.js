@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 const DeleteNote = ({ setNotes }) => {
     const { entryID, noteID } = useParams();
     // eslint-disable-next-line
-    useEffect(() => setNotes(notes => [ ...notes.filter(note => note.noteID !== noteID) ]), []);
+    useEffect(() => setNotes([ ...notes.filter(note => note.noteID !== noteID) ]), []);    
     return (
         <div>
             <p>Note {noteID} deleted.</p>

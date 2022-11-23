@@ -9,6 +9,7 @@ import GetNote from "../note/GetNote";
 import AddNote from "../note/AddNote";
 import UpdateNote from "../note/UpdateNote";
 import DeleteNote from "../note/DeleteNote";
+import ErrorPage from "./ErrorPage";
 
 const Main = () => {
     const [ entries, setEntries ] = useState([]);
@@ -18,18 +19,19 @@ const Main = () => {
         <Router>
             <Routes>
                 <Route path="/entry/:entryID/note/:noteID/delete" element={<DeleteNote setNotes={setNotes} />} />
-                <Route path="/entry/:entryID/note/:noteID/update" element={<UpdateNote notes={notes} setNotes={setNotes} />} />
+                <Route path="/entry/:entryID/note/:noteID/update" element={<UpdateNote notes={notes} setNotes={setNotes} entries={entries} />} />
                 <Route path="/entry/:entryID/note/:noteID" element={<GetNote notes={notes} />} />
-                <Route path="/entry/:entryID/note/add" element={<AddNote setNotes={setNotes} />} />
-                <Route path="/entry/:entryID/note" element={<GetNote notes={notes} />} />
+                <Route path="/entry/:entryID/note/add" element={<AddNote entries={entries} setNotes={setNotes} />} />
+                <Route path="/entry/:entryID/note" element={<GetNote entries={entries} notes={notes} />} />
                 <Route path="/entry/:entryID/delete" element={<DeleteEntry setEntries={setEntries} />} />
                 <Route path="/entry/:entryID/update" element={<UpdateEntry setEntries={setEntries} entries={entries}/>} />
                 <Route path="/entry/:entryID" element={<GetEntry entries={entries} />}>
-                    <Route path="/entry/:entryID" element={<GetNote notes={notes} />} />    
+                    <Route path="/entry/:entryID" element={<GetNote entries={entries} notes={notes} />} />    
                 </Route> 
                 <Route path="/entry/add" element={<AddEntry setEntries={setEntries} />} />
                 <Route path="/entry" element={<GetEntry entries={entries}/>} />
                 <Route path="/" element={<Home />} />
+                <Route path="*" element={<ErrorPage error={"This path doesn't exist."}/>} />
             </Routes>
         </Router>
     )
