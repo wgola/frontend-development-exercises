@@ -1,8 +1,17 @@
-import React from 'react';
-
+import React from "react";
+import { Link } from "react-router-dom";
 
 function App() {
-  return (<p>Test</p>);
+  return (
+    <ul>
+      <li>
+        <Link to="/entry">All entries</Link>
+      </li>
+      <li>
+        <Link to="/entry/add">Add entry</Link>
+      </li>
+    </ul>
+  );
 }
 
 export default App;
