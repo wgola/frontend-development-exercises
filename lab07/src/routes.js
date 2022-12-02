@@ -5,27 +5,32 @@ import SingleEntry from "./features/entries/SingleEntry";
 import AllEntries from "./features/entries/AllEntries";
 import UpdateEntry from "./features/entries/UpdateEntry";
 import DeleteEntry from "./features/entries/DeleteEntry";
+import SingleNote from "./features/notes/SingleNote";
+import AllNotes from "./features/notes/AllNotes";
+import AddNote from "./features/notes/AddNote";
+import UpdateNote from "./features/notes/UpdateNote";
+import DeleteNote from "./features/notes/DeleteNote";
 
 const routes = [
   {
     path: "/entry/:entryID/note/:noteID/delete",
-    element: <p>Delete notes</p>,
+    element: <DeleteNote />,
   },
   {
     path: "/entry/:entryID/note/:noteID/update",
-    element: <p>Update note</p>,
+    element: <UpdateNote />,
   },
   {
     path: "/entry/:entryID/note/:noteID",
-    element: <p>Get note</p>,
+    element: <SingleNote />,
   },
   {
     path: "/entry/:entryID/note/add",
-    element: <p>Add note</p>,
+    element: <AddNote />,
   },
   {
     path: "/entry/:entryID/note",
-    element: <p>Get note</p>,
+    element: <AllNotes />,
   },
   {
     path: "/entry/:entryID/delete",

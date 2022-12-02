@@ -20,10 +20,9 @@ export const entrySlice = createSlice({
     },
     updateEntry: {
       reducer(state, action) {
-        state = state.map((entry) =>
+        return state.map((entry) =>
           entry.entryID === action.payload.entryID ? action.payload : entry
         );
-        return state;
       },
       prepare(entryID, entry) {
         return {
