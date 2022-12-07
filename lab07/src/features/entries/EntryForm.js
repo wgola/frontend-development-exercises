@@ -3,6 +3,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { addEntry, updateEntry, getEntry } from "./entrySlice";
 import { validationSchema } from "./utils/formValidation";
+import DaysSelect from "./components/DaysSelect";
 
 const EntryForm = ({ entryID }) => {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const EntryForm = ({ entryID }) => {
       validateOnBlur={false}
       validateOnChange={false}
       onSubmit={(values, { resetForm }) => {
-        console.log(values);
         resetForm();
         if (entryID === null) {
           dispatch(addEntry(values));
@@ -44,14 +44,7 @@ const EntryForm = ({ entryID }) => {
         <ErrorMessage name="teacher" />
 
         <label htmlFor="day">Day: </label>
-        <Field as="select" name="day">
-          <option value="">Choose day</option>
-          <option value="Monday">Monday</option>
-          <option value="Tuesday">Tuesday</option>
-          <option value="Wednesday">Wednesday</option>
-          <option value="Thursday">Thursday</option>
-          <option value="Friday">Friday</option>
-        </Field>
+        <DaysSelect name="day" />
         <ErrorMessage name="day" />
 
         <label htmlFor="time">Time: </label>

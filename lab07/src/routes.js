@@ -43,6 +43,12 @@ const routes = [
   {
     path: "/entry/:entryID",
     element: <SingleEntry />,
+    children: [
+      {
+        path: "/entry/:entryID",
+        element: <AllNotes />
+      }
+    ]
   },
   {
     path: "/entry/add",

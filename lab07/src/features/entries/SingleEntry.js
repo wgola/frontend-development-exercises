@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getEntry } from "./entrySlice";
 
@@ -18,6 +18,7 @@ const SingleEntry = () => {
           <li>Day: {entry.day}</li>
           <li>Time: {entry.time}</li>
         </ul>
+        <Outlet />
         <Link to="/">
           <button>Home</button>
         </Link>

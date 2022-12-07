@@ -46,6 +46,6 @@ export const getAllNotesForEntry = (state, entryID) =>
   state.notes.filter((note) => note.entryID === entryID);
 
 export const getNote = (state, noteID) =>
-  state.notes.filter((note) => note.noteID === noteID);
+  state.notes.find((note) => note.noteID === noteID);
 
 export default noteSlice.reducer;

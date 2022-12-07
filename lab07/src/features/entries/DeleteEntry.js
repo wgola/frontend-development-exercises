@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { deleteEntry } from "./entrySlice";
@@ -5,7 +6,7 @@ import { deleteEntry } from "./entrySlice";
 const DeleteEntry = () => {
   const { entryID } = useParams();
   const dispatch = useDispatch();
-  dispatch(deleteEntry(entryID));
+  useEffect(() => {dispatch(deleteEntry(entryID))});
   return (
     <div>
       <p>Entry {entryID} deleted.</p>

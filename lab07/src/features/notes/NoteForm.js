@@ -9,7 +9,6 @@ const NoteForm = ({ entryID, noteID }) => {
 
   const dispatch = useDispatch();
   const note = useSelector((state) => getNote(state, noteID));
-
   const initialValues = {
     title: note !== undefined ? note.title : "",
     content: note !== undefined ? note.content : "",

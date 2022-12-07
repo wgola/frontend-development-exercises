@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { deleteNote } from "./noteSlice";
@@ -5,7 +6,7 @@ import { deleteNote } from "./noteSlice";
 const DeleteNote = ({ setNotes }) => {
   const { entryID, noteID } = useParams();
   const dispatch = useDispatch();
-  dispatch(deleteNote(noteID));
+  useEffect(() => {dispatch(deleteNote(noteID))});
   return (
     <div>
       <p>Note {noteID} deleted.</p>
