@@ -1,8 +1,10 @@
-import express from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
+import planEntryRouter from "./routes/planEntry.route.js";
+import noteRouter from "./routes/note.route.js";
 import { connectDB } from "./configs/db.config.js";
+import bodyParser from "body-parser";
+import express from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
@@ -15,7 +17,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({ origin: true, credentials: true }));
 
-app.get("/", (req, res) => res.send("Hello world"));
+app.use("/planEntry", planEntryRouter);
+app.use("/planEntry", noteRouter);
+
+app.get("/", (req, res) => res.send("Backend of frontend project"));
 
 app.listen(port, () =>
   console.log(`App is running at http://localhost:${port}`)
