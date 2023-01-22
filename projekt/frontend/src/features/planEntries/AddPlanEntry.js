@@ -7,18 +7,20 @@ import { useNavigate } from "react-router-dom";
 export const AddPlanEntry = () => {
   const navigate = useNavigate();
 
-  const onHome = () => navigate("/");
+  const onHomeClick = () => navigate("/");
+
+  const onAllEntriesClick = () => navigate("/planEntry");
 
   return (
     <Tile width={500} height={800}>
       <Header>Add new entry</Header>
       <PlanEntryForm type="add" />
       <ButtonsDiv>
-        <Button>
+        <Button type="button" onClick={onAllEntriesClick}>
           <DensitySmallOutlinedIcon />
           All entries
         </Button>
-        <Button onClick={onHome}>
+        <Button type="button" onClick={onHomeClick}>
           <HomeOutlinedIcon />
           Home
         </Button>

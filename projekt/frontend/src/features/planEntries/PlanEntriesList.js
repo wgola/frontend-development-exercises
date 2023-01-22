@@ -85,7 +85,7 @@ export const PlanEntriesList = () => {
 
   const onHomeClicked = () => navigate("/");
 
-  const onAddClicked = () => navigate("/");
+  const onAddClicked = () => navigate("/planEntry/add");
 
   return (
     <Grid container spacing={2} style={{ width: "1100px", margin: "auto" }}>
@@ -115,6 +115,7 @@ export const PlanEntriesList = () => {
             ) : (
               searchedAndSortedEntries().map((planEntry) => (
                 <PlanEntryListElement
+                  setLoading={setLoading}
                   key={planEntry._id}
                   planEntry={planEntry}
                 />

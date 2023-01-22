@@ -1,9 +1,11 @@
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { Button } from "./Button";
 import { ButtonsDiv } from "../components";
+import { Button } from "./Button";
+import axios from "../axios.js";
 
 const StyledEntry = styled("div")`
   width: 500px;
@@ -33,7 +35,19 @@ const AdditionDate = styled("div")`
   align-items: flex-end;
 `;
 
-export const PlanEntryListElement = ({ planEntry }) => {
+export const PlanEntryListElement = ({ planEntry, setLoading }) => {
+  const navigate = useNavigate();
+
+  const onMoreClicked = () => navigate(`/planEntry/${planEntry._id}`);
+
+  const onEditClicked = () => navigate(`/planEntry/${planEntry._id}/edit`);
+
+  const onDeleteClicked = async () => {
+    setLoading(true);
+    await axios.delete(`/planEntry/${planEntry._id}`);
+    setLoading(false);
+  };
+
   return (
     <StyledEntry>
       <Title>Subject: {planEntry.subject}</Title>
@@ -43,15 +57,15 @@ export const PlanEntryListElement = ({ planEntry }) => {
       </Description>
       <AdditionDate>Last modified: {planEntry.modificationTime}</AdditionDate>
       <ButtonsDiv width={480}>
-        <Button>
+        <Button type="button" onClick={onMoreClicked}>
           <MoreHorizOutlinedIcon />
           More
         </Button>
-        <Button>
+        <Button type="button" onClick={onEditClicked}>
           <EditOutlinedIcon />
           Edit
         </Button>
-        <Button>
+        <Button type="button" onClick={onDeleteClicked}>
           <DeleteOutlineOutlinedIcon />
           Delete
         </Button>

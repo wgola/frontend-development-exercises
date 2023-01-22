@@ -14,17 +14,19 @@ const StyledDiv = styled("div")`
 export const App = () => {
   const navigate = useNavigate();
 
-  const onClickAllEntries = () => navigate("/planEntry");
+  const onAllEntriesClick = () => navigate("/planEntry");
+
+  const onAddEntryClick = () => navigate("/planEntry/add");
 
   return (
     <Tile width={400} height={250}>
       <h1>Home page</h1>
       <StyledDiv>
-        <Button type="button" onClick={onClickAllEntries}>
+        <Button type="button" onClick={onAllEntriesClick}>
           <DensitySmallOutlinedIcon />
           All entries
         </Button>
-        <Button>
+        <Button type="button" onClick={onAddEntryClick}>
           <AddBoxOutlinedIcon />
           Add entry
         </Button>
