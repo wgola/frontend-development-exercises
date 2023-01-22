@@ -1,4 +1,5 @@
 import { planEntry } from "../models/planEntry.model.js";
+import { note } from "../models/note.model.js";
 
 export const getAllPlanEntries = async (req, res) => {
   try {
@@ -53,10 +54,16 @@ export const updatePlanEntry = async (req, res) => {
 export const deletePlanEntry = async (req, res) => {
   try {
     const { lessonID } = req.params;
+    const notesIDs = await planEntry.findById(lessonID, { _id: 0, notes: 1 });
     await planEntry.findByIdAndDelete(lessonID);
+    if (notesIDs.notes)
+      notesIDs.notes.forEach(
+        async (noteID) => await note.findByIdAndDelete(noteID)
+      );
 
     return res.status(200).json({ message: "Succesfully deleted entry" });
-  } catch {
+  } catch (error) {
+    console.log(error);
     return res.status(500).json({ message: "Couldn't delete plan entry" });
   }
 };
