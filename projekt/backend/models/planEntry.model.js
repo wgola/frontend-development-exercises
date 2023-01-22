@@ -6,8 +6,9 @@ const planEntrySchema = mongoose.Schema({
   teacher: { type: String, required: true },
   day: { type: String, required: true },
   time: { type: String, required: true },
+  notes: { type: [String], required: true },
   difficulty: { type: Number, required: true },
-  creationTime: { type: Date, required: true },
+  modificationTime: { type: Date, required: true },
   image: { type: String, required: true },
 });
 

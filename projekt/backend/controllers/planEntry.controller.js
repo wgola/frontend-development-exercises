@@ -26,7 +26,11 @@ export const getPlanEntryByID = async (req, res) => {
 export const createPlanEntry = async (req, res) => {
   try {
     const { lessonID, ...rest } = req.body;
-    const createdEntry = await planEntry.create({ _id: lessonID, ...rest });
+    const createdEntry = await planEntry.create({
+      _id: lessonID,
+      ...rest,
+      notes: [],
+    });
 
     return res.status(201).json(createdEntry);
   } catch {
