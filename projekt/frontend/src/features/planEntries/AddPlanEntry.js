@@ -5,6 +5,7 @@ import { PlanEntryForm } from "./planEntryForm/PlanEntryForm.js";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useNavigate } from "react-router-dom";
 import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
+import { Header } from "../../components/Header.js";
 
 export const AddPlanEntry = () => {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export const AddPlanEntry = () => {
 
   return (
     <Tile width={500} height={800}>
-      <h2>Add new entry</h2>
+      <Header>Add new entry</Header>
       <PlanEntryForm type="add" />
       <ButtonsDiv>
         <Button>
