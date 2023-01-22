@@ -1,9 +1,7 @@
 import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
+import { ButtonsDiv, Form, Header, Button } from "../../../components";
 import { FormProvider, useForm } from "react-hook-form";
-import { ButtonsDiv, Form } from "../../components";
-import { Header } from "../../components/Header";
-import { Button } from "../../components";
 import { SortFields } from "./SortFields";
 
 export const SortForm = ({ setSort }) => {

@@ -1,8 +1,7 @@
-import { Input } from "../../../components";
-import { Slider } from "../../../components/Slider";
-import { days } from "../utils/days";
-import { styled } from "@mui/material/styles";
+import { Input, Slider } from "../../../components";
 import { difficultyMarks } from "./difficultyMarks";
+import { styled } from "@mui/material/styles";
+import { days } from "../utils/days";
 
 const StyledDiv = styled("div")`
   display: flex;

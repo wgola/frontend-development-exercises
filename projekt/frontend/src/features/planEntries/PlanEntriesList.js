@@ -1,16 +1,23 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../../axios.js";
 import { addFetchedEntries, getAllPlanEntries } from "./planEntriesSlice";
-import { styled } from "@mui/material/styles";
-import { Tile } from "../../components/Tile.js";
-import { Grid } from "@mui/material";
-import { PlanEntryListElement } from "../../components/PlanEntryListElement.js";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { SearchForm } from "./searchForm/SearchForm.js";
-import { Loading } from "../../components/Loading.js";
-import { SortForm } from "../sortForm/SortForm.js";
-import { Header } from "../../components/Header.js";
+import { useDispatch, useSelector } from "react-redux";
+import { SortForm } from "./sortForm/SortForm.js";
+import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { useEffect, useState } from "react";
+import { Grid } from "@mui/material";
+import axios from "../../axios.js";
 import lodash from "lodash";
+import {
+  Tile,
+  PlanEntryListElement,
+  Loading,
+  Header,
+  ButtonsDiv,
+  Button,
+} from "../../components";
 
 const StyledList = styled("div")`
   display: flex;
@@ -19,7 +26,9 @@ const StyledList = styled("div")`
 `;
 
 export const PlanEntriesList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const allPlanEntries = useSelector(getAllPlanEntries);
 
   const [search, setSearch] = useState({
@@ -74,12 +83,26 @@ export const PlanEntriesList = () => {
     return filteredEntries;
   };
 
+  const onHomeClicked = () => navigate("/");
+
+  const onAddClicked = () => navigate("/");
+
   return (
     <Grid container spacing={2} style={{ width: "1100px", margin: "auto" }}>
       <Grid item xs={4}>
         <Tile width={400}>
           <SearchForm setSearch={setSearch} />
           <SortForm setSort={setSort} />
+          <ButtonsDiv>
+            <Button type="button" onClick={onHomeClicked}>
+              <HomeOutlinedIcon />
+              Home
+            </Button>
+            <Button type="button" onClick={onAddClicked}>
+              <AddBoxOutlinedIcon />
+              Add entry
+            </Button>
+          </ButtonsDiv>
         </Tile>
       </Grid>
       <Grid item xs={8}>

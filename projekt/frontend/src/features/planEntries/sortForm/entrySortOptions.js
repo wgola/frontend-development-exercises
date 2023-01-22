@@ -54,7 +54,7 @@ export const entrySortOptions = [
         Last modification
       </StyledLabel>
     ),
-    value: "creationTime-desc",
+    value: "modificationTime-desc",
   },
   {
     label: (
@@ -63,6 +63,6 @@ export const entrySortOptions = [
         Last modification
       </StyledLabel>
     ),
-    value: "creationTime-asc",
+    value: "modificationTime-asc",
   },
 ];

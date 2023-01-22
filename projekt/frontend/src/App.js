@@ -1,8 +1,9 @@
+import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
+import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
+import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import { Button } from "./components/Button";
 import { Tile } from "./components/Tile";
-import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
 
 const StyledDiv = styled("div")`
   display: flex;
@@ -22,6 +23,10 @@ export const App = () => {
         <Button type="button" onClick={onClickAllEntries}>
           <DensitySmallOutlinedIcon />
           All entries
+        </Button>
+        <Button>
+          <AddBoxOutlinedIcon />
+          Add entry
         </Button>
       </StyledDiv>
     </Tile>

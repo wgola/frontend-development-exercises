@@ -1,6 +1,6 @@
-import { Input } from "../../../components/Input.js";
-import { days } from "../utils/days.js";
 import { styled } from "@mui/material/styles";
+import { Input } from "../../../components";
+import { days } from "../utils/days.js";
 
 const StyledDiv = styled("div")`
   display: flex;

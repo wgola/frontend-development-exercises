@@ -1,9 +1,8 @@
 import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
+import { Button, ButtonsDiv, Form, Header } from "../../../components";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import { Button, ButtonsDiv, Form } from "../../../components";
 import { FormProvider, useForm } from "react-hook-form";
 import { SearchFormFields } from "./SearchFormFields";
-import { Header } from "../../../components/Header";
 
 export const SearchForm = ({ setSearch }) => {
   const initialValues = {

@@ -1,11 +1,8 @@
-import { Button } from "../../components/Button.js";
-import { ButtonsDiv } from "../../components/ButtonsDiv.js";
-import { Tile } from "../../components/Tile.js";
+import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
+import { Button, ButtonsDiv, Tile, Header } from "../../components";
 import { PlanEntryForm } from "./planEntryForm/PlanEntryForm.js";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { useNavigate } from "react-router-dom";
-import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
-import { Header } from "../../components/Header.js";
 
 export const AddPlanEntry = () => {
   const navigate = useNavigate();

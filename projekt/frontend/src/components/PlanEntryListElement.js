@@ -41,7 +41,7 @@ export const PlanEntryListElement = ({ planEntry }) => {
         <span>{planEntry.day}</span>
         <span>difficulty: {planEntry.difficulty}</span>
       </Description>
-      <AdditionDate>entry added: {planEntry.creationTime}</AdditionDate>
+      <AdditionDate>Last modified: {planEntry.modificationTime}</AdditionDate>
       <ButtonsDiv width={480}>
         <Button>
           <MoreHorizOutlinedIcon />
