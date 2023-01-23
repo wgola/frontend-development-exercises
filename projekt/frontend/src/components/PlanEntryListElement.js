@@ -4,8 +4,10 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { ButtonsDiv } from "../components";
+import { useDispatch } from "react-redux";
 import { Button } from "./Button";
 import axios from "../axios.js";
+import { deleteEntry } from "../features/planEntries/planEntriesSlice";
 
 const StyledEntry = styled("div")`
   width: 500px;
@@ -37,6 +39,7 @@ const AdditionDate = styled("div")`
 
 export const PlanEntryListElement = ({ planEntry, setLoading }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onMoreClicked = () => navigate(`/planEntry/${planEntry._id}`);
 
@@ -45,6 +48,7 @@ export const PlanEntryListElement = ({ planEntry, setLoading }) => {
   const onDeleteClicked = async () => {
     setLoading(true);
     await axios.delete(`/planEntry/${planEntry._id}`);
+    dispatch(deleteEntry(planEntry._id));
     setLoading(false);
   };
 

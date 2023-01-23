@@ -38,8 +38,8 @@ export const PlanEntriesList = () => {
   });
 
   const [sort, setSort] = useState({
-    field: "",
-    type: "",
+    field: "subject",
+    type: "asc",
   });
 
   const [loading, setLoading] = useState(false);
@@ -92,7 +92,7 @@ export const PlanEntriesList = () => {
       <Grid item xs={4}>
         <Tile width={400}>
           <SearchForm setSearch={setSearch} />
-          <SortForm setSort={setSort} />
+          <SortForm setSort={setSort} sort={sort} />
           <ButtonsDiv>
             <Button type="button" onClick={onHomeClicked}>
               <HomeOutlinedIcon />

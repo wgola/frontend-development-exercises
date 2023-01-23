@@ -3,6 +3,13 @@ import { MenuItem, TextField } from "@mui/material";
 import { Controller, useFormContext } from "react-hook-form";
 
 const StyledTextField = styled(TextField)`
+  & label {
+    color: ${({ theme }) => theme.palette.primary.main};
+    font-size: 17px;
+  }
+  & .MuiOutlinedInput-root fieldset {
+    border-color: ${({ theme }) => theme.palette.primary.main};
+  }
   height: 70px;
 `;
 

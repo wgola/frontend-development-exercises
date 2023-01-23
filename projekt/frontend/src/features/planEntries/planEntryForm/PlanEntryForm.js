@@ -5,27 +5,37 @@ import { PlanEntryFormFields } from "./PlanEntryFormFields.js";
 import { FormProvider, useForm } from "react-hook-form";
 import validationSchema from "./planEntryValidation.js";
 import { createEntry } from "../utils/createEntry.js";
-import { addNewEntry } from "../planEntriesSlice.js";
+import { addNewEntry, getPlanEntryByID } from "../planEntriesSlice.js";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "../../../axios.js";
 import { useState } from "react";
 
 export const PlanEntryForm = ({ type }) => {
   const dispatch = useDispatch();
   const { lessonID } = useParams();
+  const entry = useSelector(getPlanEntryByID(lessonID));
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  const initialValues = {
-    subject: "",
-    teacher: "",
-    day: "",
-    time: "",
-    difficulty: 0,
-    image: "",
-  };
+  const initialValues = entry
+    ? {
+        subject: entry.subject,
+        teacher: entry.teacher,
+        day: entry.day,
+        time: entry.time,
+        difficulty: entry.difficulty,
+        image: entry.image,
+      }
+    : {
+        subject: "",
+        teacher: "",
+        day: "",
+        time: "",
+        difficulty: 0,
+        image: "",
+      };
 
   const formMethods = useForm({
     defaultValues: initialValues,
@@ -60,6 +70,13 @@ export const PlanEntryForm = ({ type }) => {
       const addedEntry = await axios.post("/planEntry", newEntry);
       dispatch(addNewEntry(addedEntry.data));
       onEntryAdded();
+    } catch (error) {
+      onError(error);
+    }
+  };
+
+  const onEditEntry = async (data) => {
+    try {
     } catch (error) {
       onError(error);
     }

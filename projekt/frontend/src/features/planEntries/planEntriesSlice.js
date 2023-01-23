@@ -20,7 +20,7 @@ export const planEntriesSlice = createSlice({
     addNewEntry: (state, action) => {
       const { __v, ...entry } = action.payload;
       state.byID[entry._id] = entry;
-      state.allIDs.push(entry);
+      state.allIDs.push(entry._id);
     },
     editEntry: (state, action) => {
       const { __v, ...entry } = action.payload;

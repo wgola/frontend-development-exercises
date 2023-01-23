@@ -18,7 +18,7 @@ export const entrySortOptions = [
         Subject
       </StyledLabel>
     ),
-    value: "subject-desc",
+    value: "subject-asc",
   },
   {
     label: (
@@ -27,7 +27,7 @@ export const entrySortOptions = [
         Subject
       </StyledLabel>
     ),
-    value: "subject-asc",
+    value: "subject-desc",
   },
   {
     label: (
