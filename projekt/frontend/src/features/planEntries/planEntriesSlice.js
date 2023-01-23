@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { merge } from "lodash/merge";
+import lodash from "lodash";
 
 export const planEntriesSlice = createSlice({
   name: "planEntries",
@@ -26,7 +26,7 @@ export const planEntriesSlice = createSlice({
     },
     editEntry: (state, action) => {
       const { __v, ...entry } = action.payload;
-      state.byID[entry._id] = merge(state.byID[entry._id], entry);
+      state.byID[entry._id] = lodash.merge(state.byID[entry._id], entry);
     },
     deleteEntry: (state, action) => {
       const _id = action.payload;
