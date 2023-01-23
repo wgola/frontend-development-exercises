@@ -26,6 +26,7 @@ export const planEntriesSlice = createSlice({
     addNewEntry: (state, action) => {
       const { __v, modificationTime, ...entry } = action.payload;
       state.byID[entry._id] = {
+        allNotesFetched: false,
         modificationTime: new Date(modificationTime).toUTCString(),
         ...entry,
       };
