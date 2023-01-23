@@ -1,4 +1,3 @@
-import { addFetchedEntries, getAllPlanEntries } from "./planEntriesSlice";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import { SearchForm } from "./searchForm/SearchForm.js";
@@ -10,6 +9,11 @@ import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import axios from "../../axios.js";
 import lodash from "lodash";
+import {
+  addFetchedEntries,
+  getAllPlanEntries,
+  getIfAllEntriesFetched,
+} from "./planEntriesSlice";
 import {
   Tile,
   PlanEntryListElement,
@@ -30,6 +34,7 @@ export const PlanEntriesList = () => {
   const dispatch = useDispatch();
 
   const allPlanEntries = useSelector(getAllPlanEntries);
+  const ifAllEntriesFetched = useSelector(getIfAllEntriesFetched);
 
   const [search, setSearch] = useState({
     subject: "",
@@ -44,16 +49,15 @@ export const PlanEntriesList = () => {
 
   const [loading, setLoading] = useState(false);
 
-  const fetchData = async () => {
-    setLoading(true);
-    const allEntries = await axios.get("/planEntry");
-    dispatch(addFetchedEntries(allEntries.data));
-    setLoading(false);
-  };
-
   useEffect(() => {
-    if (allPlanEntries.length <= 1) fetchData();
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      const allEntries = await axios.get("/planEntry");
+      dispatch(addFetchedEntries(allEntries.data));
+      setLoading(false);
+    };
+    if (!ifAllEntriesFetched) fetchData();
+  }, [ifAllEntriesFetched, dispatch]);
 
   const searchedAndSortedEntries = () => {
     const filteredEntries = allPlanEntries.filter((entry) => {

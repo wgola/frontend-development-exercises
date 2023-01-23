@@ -6,6 +6,7 @@ export const planEntriesSlice = createSlice({
   initialState: {
     byID: {},
     allIDs: [],
+    allEntriesFetched: false,
   },
   reducers: {
     addFetchedEntries: (state, action) => {
@@ -13,9 +14,10 @@ export const planEntriesSlice = createSlice({
       state.allIDs = [];
       action.payload.forEach((planEntry) => {
         const { __v, ...entry } = planEntry;
-        state.byID[entry._id] = entry;
+        state.byID[entry._id] = { allNotesFetched: false, ...entry };
         state.allIDs.push(planEntry._id);
       });
+      state.allEntriesFetched = true;
     },
     addNewEntry: (state, action) => {
       const { __v, ...entry } = action.payload;
@@ -43,3 +45,6 @@ export const getAllPlanEntries = (state) =>
   state.planEntries.allIDs.map((id) => state.planEntries.byID[id]);
 
 export const getPlanEntryByID = (id) => (state) => state.planEntries.byID[id];
+
+export const getIfAllEntriesFetched = (state) =>
+  state.planEntries.allEntriesFetched;
