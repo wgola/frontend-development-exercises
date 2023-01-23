@@ -3,6 +3,7 @@ import { App } from "./App";
 import { PlanEntriesList } from "./features/planEntries/PlanEntriesList";
 import { AddPlanEntry } from "./features/planEntries/AddPlanEntry";
 import { EditPlanEntry } from "./features/planEntries/EditPlanEntry";
+import { DetailPlanEntry } from "./features/planEntries/DetailPlanEntry";
 
 const routes = [
   {
@@ -20,6 +21,10 @@ const routes = [
   {
     path: "/planEntry/:lessonID/edit",
     element: <EditPlanEntry />,
+  },
+  {
+    path: "/planEntry/:lessonID",
+    element: <DetailPlanEntry />,
   },
 ];
 

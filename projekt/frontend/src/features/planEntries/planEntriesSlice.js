@@ -13,15 +13,22 @@ export const planEntriesSlice = createSlice({
       state.byID = {};
       state.allIDs = [];
       action.payload.forEach((planEntry) => {
-        const { __v, ...entry } = planEntry;
-        state.byID[entry._id] = { allNotesFetched: false, ...entry };
+        const { __v, modificationTime, ...entry } = planEntry;
+        state.byID[entry._id] = {
+          allNotesFetched: false,
+          modificationTime: new Date(modificationTime).toUTCString(),
+          ...entry,
+        };
         state.allIDs.push(planEntry._id);
       });
       state.allEntriesFetched = true;
     },
     addNewEntry: (state, action) => {
-      const { __v, ...entry } = action.payload;
-      state.byID[entry._id] = entry;
+      const { __v, modificationTime, ...entry } = action.payload;
+      state.byID[entry._id] = {
+        modificationTime: new Date(modificationTime).toUTCString(),
+        ...entry,
+      };
       state.allIDs.push(entry._id);
     },
     editEntry: (state, action) => {

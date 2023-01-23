@@ -23,7 +23,7 @@ export const PlanEntryForm = ({ type }) => {
 
   useEffect(() => {
     if (type === "edit" && !entry) navigate(`/planEntry/${lessonID}`);
-  });
+  }, [type, entry, lessonID, navigate]);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -79,7 +79,7 @@ export const PlanEntryForm = ({ type }) => {
       setMessage("Entry edited succesfully!");
       setTimeout(() => {
         navigate(`/planEntry/${lessonID}`);
-      }, 2000);
+      }, 1000);
     }, 2000);
   };
 

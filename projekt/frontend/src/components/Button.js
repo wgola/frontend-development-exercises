@@ -17,8 +17,8 @@ const StyledSpan = styled("span")`
   gap: 5px;
 `;
 
-export const Button = ({ type, children, onClick }) => (
-  <StyledButton type={type} onClick={onClick}>
+export const Button = ({ type, children, onClick, disabled }) => (
+  <StyledButton type={type} onClick={onClick} disabled={disabled}>
     <StyledSpan>{children}</StyledSpan>
   </StyledButton>
 );
