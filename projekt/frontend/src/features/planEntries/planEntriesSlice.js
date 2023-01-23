@@ -41,11 +41,21 @@ export const planEntriesSlice = createSlice({
       delete state.byID[_id];
       state.allIDs = state.allIDs.filter((id) => id !== _id);
     },
+    addNoteToEntry: (state, action) => {
+      const { lessonID, noteID } = action.payload;
+      console.log(lessonID, noteID);
+      state.byID[lessonID].notes.push(noteID);
+    },
   },
 });
 
-export const { addFetchedEntries, addNewEntry, editEntry, deleteEntry } =
-  planEntriesSlice.actions;
+export const {
+  addFetchedEntries,
+  addNewEntry,
+  editEntry,
+  deleteEntry,
+  addNoteToEntry,
+} = planEntriesSlice.actions;
 
 export const planEntriesReducer = planEntriesSlice.reducer;
 

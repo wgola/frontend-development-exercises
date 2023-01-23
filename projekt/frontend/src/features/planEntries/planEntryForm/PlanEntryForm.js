@@ -111,8 +111,7 @@ export const PlanEntryForm = ({ type }) => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    if (type === "add") onAddNewEntry(data);
-    if (type === "edit") onEditEntry(data);
+    type === "add" ? onAddNewEntry(data) : onEditEntry(data);
   };
 
   const onReset = () => formMethods.reset();

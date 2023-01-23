@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import lodash from "lodash";
-import { planEntriesSlice } from "../planEntries/planEntriesSlice";
 
 export const notesSlice = createSlice({
   name: "notes",
@@ -42,6 +41,8 @@ export const notesSlice = createSlice({
 });
 
 export const { addFetchedNotes, addNewNote, editNote, deleteNote } =
-  planEntriesSlice.actions;
+  notesSlice.actions;
 
 export const notesReducer = notesSlice.reducer;
+
+export const getNoteByID = (noteID) => (state) => state.notes.byID[noteID];

@@ -13,7 +13,7 @@ import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
 
 const StyledLayout = styled("div")`
-  width: 850px;
+  width: 1050px;
   display: flex;
   justify-content: left;
   gap: 15px;
@@ -26,9 +26,9 @@ const LeftDiv = styled("div")`
 `;
 
 const RightDiv = styled("div")`
-  padding: 15px;
+  padding: 17px;
   background-color: ${({ theme }) => theme.palette.secondary.main};
-  width: 650px;
+  width: 850px;
   display: flex;
   flex-direction: column;
   border-radius: 15px;
@@ -36,7 +36,7 @@ const RightDiv = styled("div")`
 
 const DetailsDiv = styled("div")`
   display: flex;
-  padding: 10px;
+  padding: 15px;
   flex-direction: column;
   justify-content: space-around;
 `;
@@ -53,15 +53,15 @@ const StyledInfo = styled("span")`
 `;
 
 const ButtonDiv = styled("div")`
-  margin: 10px;
+  margin: 30px 0px;
   display: flex;
-  gap: 15px;
+  gap: 8px;
   flex-wrap: wrap;
   justify-content: center;
 `;
 
 const MessageDiv = styled("div")`
-  padding: 10px;
+  padding: 7px;
   width: 200px;
   background-color: ${({ theme }) => theme.palette.secondary.main};
   border-radius: 15px;
@@ -122,7 +122,7 @@ export const DetailPlanEntry = () => {
   const onAllEntriesClicked = () => navigate(`/planEntry`);
 
   return (
-    <Tile width={900}>
+    <Tile width={1100}>
       {planEntry ? (
         <StyledLayout>
           <LeftDiv>
@@ -168,6 +168,10 @@ export const DetailPlanEntry = () => {
                 <DeleteOutlineOutlinedIcon />
                 Delete
               </Button>
+              <Button onClick={onAllEntriesClicked}>
+                <DensitySmallOutlinedIcon />
+                All entries
+              </Button>
               <Button onClick={onAddNoteClicked}>
                 <NoteAddOutlinedIcon /> Add note
               </Button>
@@ -178,15 +182,11 @@ export const DetailPlanEntry = () => {
                 <NoteAltOutlinedIcon />
                 All notes
               </Button>
-              <Button onClick={onAllEntriesClicked}>
-                <DensitySmallOutlinedIcon />
-                All entries
-              </Button>
             </ButtonDiv>
           </RightDiv>
         </StyledLayout>
       ) : (
-        <Loading loading={loading} message={message} />
+        <Loading isLoading={loading} message={message} />
       )}
     </Tile>
   );
