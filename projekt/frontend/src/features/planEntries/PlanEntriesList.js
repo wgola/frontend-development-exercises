@@ -98,12 +98,18 @@ export const PlanEntriesList = () => {
           <SearchForm setSearch={setSearch} />
           <SortForm setSort={setSort} sort={sort} />
           <ButtonsDiv>
-            <Button type="button" onClick={onHomeClicked}>
-              <HomeOutlinedIcon />
+            <Button
+              type="button"
+              onClick={onHomeClicked}
+              startIcon={<HomeOutlinedIcon />}
+            >
               Home
             </Button>
-            <Button type="button" onClick={onAddClicked}>
-              <AddBoxOutlinedIcon />
+            <Button
+              type="button"
+              onClick={onAddClicked}
+              startIcon={<AddBoxOutlinedIcon />}
+            >
               Add entry
             </Button>
           </ButtonsDiv>

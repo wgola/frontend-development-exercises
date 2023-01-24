@@ -33,7 +33,6 @@ const StyledImg = styled("img")`
   height: 60px;
   border: 2px solid ${({ theme }) => theme.palette.background.main};
   border-radius: 15px;
-  padding: 5px;
 `;
 
 const Title = styled("span")`
@@ -64,8 +63,11 @@ export const NotesListElement = ({ note }) => {
       </LeftColumn>
       <RightColumn>
         <StyledImg src={note.image} alt={"image"} />
-        <Button type="button" onClick={onMoreClicked}>
-          <MoreHorizOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onMoreClicked}
+          startIcon={<MoreHorizOutlinedIcon />}
+        >
           More
         </Button>
       </RightColumn>

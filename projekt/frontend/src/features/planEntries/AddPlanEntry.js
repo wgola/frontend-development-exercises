@@ -16,12 +16,18 @@ export const AddPlanEntry = () => {
       <Header>Add new entry</Header>
       <PlanEntryForm type="add" />
       <ButtonsDiv>
-        <Button type="button" onClick={onAllEntriesClick}>
-          <DensitySmallOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onAllEntriesClick}
+          startIcon={<DensitySmallOutlinedIcon />}
+        >
           All entries
         </Button>
-        <Button type="button" onClick={onHomeClick}>
-          <HomeOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onHomeClick}
+          startIcon={<HomeOutlinedIcon />}
+        >
           Home
         </Button>
       </ButtonsDiv>

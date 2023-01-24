@@ -17,12 +17,18 @@ export const EditPlanEntry = () => {
       <Header>Edit entry</Header>
       <PlanEntryForm type="edit" />
       <ButtonsDiv>
-        <Button type="button" onClick={onAllEntriesClicked}>
-          <DensitySmallOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onAllEntriesClicked}
+          startIcon={<DensitySmallOutlinedIcon />}
+        >
           All entries
         </Button>
-        <Button type="button" onClick={onToEntryClicked}>
-          <ArrowBackIosNewOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onToEntryClicked}
+          startIcon={<ArrowBackIosNewOutlinedIcon />}
+        >
           To entry
         </Button>
       </ButtonsDiv>

@@ -122,12 +122,19 @@ export const PlanEntryForm = ({ type }) => {
         <PlanEntryFormFields />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
-          <Button type="submit" disabled={loading}>
-            <PublishOutlinedIcon />
+          <Button
+            type="submit"
+            disabled={loading}
+            startIcon={<PublishOutlinedIcon />}
+          >
             Submit
           </Button>
-          <Button type="button" onClick={onReset} disabled={loading}>
-            <RestartAltOutlinedIcon />
+          <Button
+            type="button"
+            onClick={onReset}
+            disabled={loading}
+            startIcon={<RestartAltOutlinedIcon />}
+          >
             Reset
           </Button>
         </ButtonsDiv>

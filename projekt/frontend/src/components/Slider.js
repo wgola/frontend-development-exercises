@@ -20,7 +20,7 @@ export const Slider = (props) => {
           valueLabelDisplay="auto"
           {...field}
           marks={props.marks}
-          min={0}
+          min={1}
           max={10}
           step={1}
         />

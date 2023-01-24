@@ -17,12 +17,13 @@ export const AddNote = () => {
       <Header>Add new note</Header>
       <NoteForm type="add" />
       <ButtonsDiv>
-        <Button onClick={onAllNotesClick}>
-          <NoteAltOutlinedIcon />
+        <Button onClick={onAllNotesClick} startIcon={<NoteAltOutlinedIcon />}>
           All notes
         </Button>
-        <Button onClick={onToEntryClick}>
-          <ArrowBackIosNewOutlinedIcon />
+        <Button
+          onClick={onToEntryClick}
+          startIcon={<ArrowBackIosNewOutlinedIcon />}
+        >
           To entry
         </Button>
       </ButtonsDiv>

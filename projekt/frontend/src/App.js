@@ -22,12 +22,18 @@ export const App = () => {
     <Tile width={400} height={250}>
       <h1>Home page</h1>
       <StyledDiv>
-        <Button type="button" onClick={onAllEntriesClick}>
-          <DensitySmallOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onAllEntriesClick}
+          startIcon={<DensitySmallOutlinedIcon />}
+        >
           All entries
         </Button>
-        <Button type="button" onClick={onAddEntryClick}>
-          <AddBoxOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onAddEntryClick}
+          startIcon={<AddBoxOutlinedIcon />}
+        >
           Add entry
         </Button>
       </StyledDiv>

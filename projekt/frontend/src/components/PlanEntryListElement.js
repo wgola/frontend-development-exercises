@@ -46,8 +46,11 @@ export const PlanEntryListElement = ({ planEntry }) => {
       </Description>
       <ModificationDate>
         Last modified: {planEntry.modificationTime}
-        <Button type="button" onClick={onMoreClicked}>
-          <MoreHorizOutlinedIcon />
+        <Button
+          type="button"
+          onClick={onMoreClicked}
+          startIcon={<MoreHorizOutlinedIcon />}
+        >
           More
         </Button>
       </ModificationDate>

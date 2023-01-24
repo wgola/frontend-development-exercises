@@ -11,14 +11,4 @@ const StyledButton = styled(MUIButton)`
   }
 `;
 
-const StyledSpan = styled("span")`
-  display: flex;
-  align-items: center;
-  gap: 5px;
-`;
-
-export const Button = ({ type, children, onClick, disabled }) => (
-  <StyledButton type={type} onClick={onClick} disabled={disabled}>
-    <StyledSpan>{children}</StyledSpan>
-  </StyledButton>
-);
+export const Button = ({ ...props }) => <StyledButton {...props} />;

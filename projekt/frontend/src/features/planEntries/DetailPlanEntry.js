@@ -122,7 +122,7 @@ export const DetailPlanEntry = () => {
   const onAllEntriesClicked = () => navigate(`/planEntry`);
 
   return (
-    <div>
+    <>
       <Tile width={1100}>
         {planEntry ? (
           <StyledLayout>
@@ -161,26 +161,35 @@ export const DetailPlanEntry = () => {
                 </BothSides>
               </DetailsDiv>
               <ButtonDiv width={600}>
-                <Button onClick={onEditClicked}>
-                  <EditOutlinedIcon />
+                <Button
+                  onClick={onEditClicked}
+                  startIcon={<EditOutlinedIcon />}
+                >
                   Edit
                 </Button>
-                <Button onClick={onDeleteClicked}>
-                  <DeleteOutlineOutlinedIcon />
+                <Button
+                  onClick={onDeleteClicked}
+                  startIcon={<DeleteOutlineOutlinedIcon />}
+                >
                   Delete
                 </Button>
-                <Button onClick={onAllEntriesClicked}>
-                  <DensitySmallOutlinedIcon />
+                <Button
+                  onClick={onAllEntriesClicked}
+                  startIcon={<DensitySmallOutlinedIcon />}
+                >
                   All entries
                 </Button>
-                <Button onClick={onAddNoteClicked}>
-                  <NoteAddOutlinedIcon /> Add note
+                <Button
+                  onClick={onAddNoteClicked}
+                  startIcon={<NoteAddOutlinedIcon />}
+                >
+                  Add note
                 </Button>
                 <Button
                   onClick={onAllNotesClicked}
                   disabled={planEntry.notes.length === 0}
+                  startIcon={<NoteAltOutlinedIcon />}
                 >
-                  <NoteAltOutlinedIcon />
                   All notes
                 </Button>
               </ButtonDiv>
@@ -191,6 +200,6 @@ export const DetailPlanEntry = () => {
         )}
       </Tile>
       <Outlet />
-    </div>
+    </>
   );
 };

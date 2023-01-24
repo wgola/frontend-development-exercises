@@ -28,12 +28,14 @@ export const SearchForm = ({ setSearch }) => {
       <Form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <SearchFormFields />
         <ButtonsDiv>
-          <Button type="submit">
-            <SearchOutlinedIcon />
+          <Button type="submit" startIcon={<SearchOutlinedIcon />}>
             Search
           </Button>
-          <Button type="button" onClick={onReset}>
-            <RestartAltOutlinedIcon />
+          <Button
+            type="button"
+            onClick={onReset}
+            startIcon={<RestartAltOutlinedIcon />}
+          >
             Reset
           </Button>
         </ButtonsDiv>

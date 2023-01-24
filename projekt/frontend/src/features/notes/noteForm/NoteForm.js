@@ -96,7 +96,7 @@ export const NoteForm = ({ type }) => {
   const onEditNote = async (data) => {
     try {
       const editedNote = {
-        _id: lessonID,
+        _id: noteID,
         modificationTime: new Date().toUTCString(),
         ...data,
       };
@@ -121,12 +121,19 @@ export const NoteForm = ({ type }) => {
         <NoteFormFields />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
-          <Button type="submit" disabled={loading}>
-            <PublishOutlinedIcon />
+          <Button
+            type="submit"
+            disabled={loading}
+            startIcon={<PublishOutlinedIcon />}
+          >
             Submit
           </Button>
-          <Button type="button" onClick={onReset} disabled={loading}>
-            <RestartAltOutlinedIcon />
+          <Button
+            type="button"
+            onClick={onReset}
+            disabled={loading}
+            startIcon={<RestartAltOutlinedIcon />}
+          >
             Reset
           </Button>
         </ButtonsDiv>

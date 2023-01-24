@@ -6,6 +6,8 @@ import { EditPlanEntry } from "./features/planEntries/EditPlanEntry";
 import { DetailPlanEntry } from "./features/planEntries/DetailPlanEntry";
 import { AddNote } from "./features/notes/AddNote";
 import { NotesList } from "./features/notes/NotesList";
+import { DetailNote } from "./features/notes/DetailNote";
+import { EditNote } from "./features/notes/EditNote";
 
 const routes = [
   {
@@ -37,6 +39,14 @@ const routes = [
   {
     path: "/planEntry/:lessonID/note/add",
     element: <AddNote />,
+  },
+  {
+    path: "/planEntry/:lessonID/note/:noteID",
+    element: <DetailNote />,
+  },
+  {
+    path: "/planEntry/:lessonID/note/:noteID/edit",
+    element: <EditNote />,
   },
 ];
 

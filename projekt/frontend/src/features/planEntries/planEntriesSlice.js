@@ -43,6 +43,13 @@ export const planEntriesSlice = createSlice({
       delete state.byID[_id];
       state.allIDs = state.allIDs.filter((id) => id !== _id);
     },
+    deleteNoteFromEntry: (state, action) => {
+      const { lessonID, noteID } = action.payload;
+      if (state.byID[lessonID])
+        state.byID[lessonID].notes = state.byID[lessonID].notes.filter(
+          (id) => id !== noteID
+        );
+    },
     addNoteToEntry: (state, action) => {
       const { lessonID, noteID } = action.payload;
       console.log(lessonID, noteID);
@@ -61,6 +68,7 @@ export const {
   deleteEntry,
   addNoteToEntry,
   allNotesFetched,
+  deleteNoteFromEntry,
 } = planEntriesSlice.actions;
 
 export const planEntriesReducer = planEntriesSlice.reducer;
