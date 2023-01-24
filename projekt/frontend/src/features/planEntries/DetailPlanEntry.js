@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 import axios from "../../axios";
 import { Button, Header, Loading, Tile } from "../../components";
 import { Image } from "../../components/Image";
@@ -122,72 +122,75 @@ export const DetailPlanEntry = () => {
   const onAllEntriesClicked = () => navigate(`/planEntry`);
 
   return (
-    <Tile width={1100}>
-      {planEntry ? (
-        <StyledLayout>
-          <LeftDiv>
-            <Image src={planEntry.image} alt={`${planEntry.image} image`} />
-            {message && <MessageDiv>{message}</MessageDiv>}
-          </LeftDiv>
-          <RightDiv>
-            <Header>Plan entry #{lessonID}</Header>
-            <DetailsDiv>
-              <BothSides>
+    <div>
+      <Tile width={1100}>
+        {planEntry ? (
+          <StyledLayout>
+            <LeftDiv>
+              <Image src={planEntry.image} alt={`${planEntry.image} image`} />
+              {message && <MessageDiv>{message}</MessageDiv>}
+            </LeftDiv>
+            <RightDiv>
+              <Header>Plan entry #{lessonID}</Header>
+              <DetailsDiv>
+                <BothSides>
+                  <span>
+                    Subject: <StyledInfo>{planEntry.subject}</StyledInfo>
+                  </span>
+                  <span>
+                    <StyledInfo>
+                      {planEntry.day}, {planEntry.time}{" "}
+                    </StyledInfo>
+                  </span>
+                </BothSides>
                 <span>
-                  Subject: <StyledInfo>{planEntry.subject}</StyledInfo>
+                  Teacher: <StyledInfo>{planEntry.teacher}</StyledInfo>
                 </span>
                 <span>
-                  <StyledInfo>
-                    {planEntry.day}, {planEntry.time}{" "}
-                  </StyledInfo>
+                  Number of notes:{" "}
+                  <StyledInfo>{planEntry.notes.length}</StyledInfo>
                 </span>
-              </BothSides>
-              <span>
-                Teacher: <StyledInfo>{planEntry.teacher}</StyledInfo>
-              </span>
-              <span>
-                Number of notes:{" "}
-                <StyledInfo>{planEntry.notes.length}</StyledInfo>
-              </span>
-              <BothSides>
-                <span>
-                  Difficulty: <StyledInfo>{planEntry.difficulty}</StyledInfo>
-                </span>
-                <span style={{ fontSize: "13.5px" }}>
-                  Last modified:{" "}
-                  <StyledInfo>{planEntry.modificationTime}</StyledInfo>
-                </span>
-              </BothSides>
-            </DetailsDiv>
-            <ButtonDiv width={600}>
-              <Button onClick={onEditClicked}>
-                <EditOutlinedIcon />
-                Edit
-              </Button>
-              <Button onClick={onDeleteClicked}>
-                <DeleteOutlineOutlinedIcon />
-                Delete
-              </Button>
-              <Button onClick={onAllEntriesClicked}>
-                <DensitySmallOutlinedIcon />
-                All entries
-              </Button>
-              <Button onClick={onAddNoteClicked}>
-                <NoteAddOutlinedIcon /> Add note
-              </Button>
-              <Button
-                onClick={onAllNotesClicked}
-                disabled={planEntry.notes.length === 0}
-              >
-                <NoteAltOutlinedIcon />
-                All notes
-              </Button>
-            </ButtonDiv>
-          </RightDiv>
-        </StyledLayout>
-      ) : (
-        <Loading isLoading={loading} message={message} />
-      )}
-    </Tile>
+                <BothSides>
+                  <span>
+                    Difficulty: <StyledInfo>{planEntry.difficulty}</StyledInfo>
+                  </span>
+                  <span style={{ fontSize: "13.5px" }}>
+                    Last modified:{" "}
+                    <StyledInfo>{planEntry.modificationTime}</StyledInfo>
+                  </span>
+                </BothSides>
+              </DetailsDiv>
+              <ButtonDiv width={600}>
+                <Button onClick={onEditClicked}>
+                  <EditOutlinedIcon />
+                  Edit
+                </Button>
+                <Button onClick={onDeleteClicked}>
+                  <DeleteOutlineOutlinedIcon />
+                  Delete
+                </Button>
+                <Button onClick={onAllEntriesClicked}>
+                  <DensitySmallOutlinedIcon />
+                  All entries
+                </Button>
+                <Button onClick={onAddNoteClicked}>
+                  <NoteAddOutlinedIcon /> Add note
+                </Button>
+                <Button
+                  onClick={onAllNotesClicked}
+                  disabled={planEntry.notes.length === 0}
+                >
+                  <NoteAltOutlinedIcon />
+                  All notes
+                </Button>
+              </ButtonDiv>
+            </RightDiv>
+          </StyledLayout>
+        ) : (
+          <Loading isLoading={loading} message={message} />
+        )}
+      </Tile>
+      <Outlet />
+    </div>
   );
 };

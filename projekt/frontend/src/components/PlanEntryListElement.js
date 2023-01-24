@@ -32,7 +32,7 @@ const ModificationDate = styled("div")`
   align-items: center;
 `;
 
-export const PlanEntryListElement = ({ planEntry, setLoading }) => {
+export const PlanEntryListElement = ({ planEntry }) => {
   const navigate = useNavigate();
 
   const onMoreClicked = () => navigate(`/planEntry/${planEntry._id}`);

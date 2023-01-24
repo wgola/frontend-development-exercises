@@ -10,12 +10,14 @@ export const planEntriesSlice = createSlice({
   },
   reducers: {
     addFetchedEntries: (state, action) => {
-      state.byID = {};
       state.allIDs = [];
       action.payload.forEach((planEntry) => {
         const { __v, modificationTime, ...entry } = planEntry;
+        const allNotesFetched = state.byID[entry._id]
+          ? state.byID[entry._id].allNotesFetched
+          : false;
         state.byID[entry._id] = {
-          allNotesFetched: false,
+          allNotesFetched: allNotesFetched,
           modificationTime: new Date(modificationTime).toUTCString(),
           ...entry,
         };
@@ -46,6 +48,9 @@ export const planEntriesSlice = createSlice({
       console.log(lessonID, noteID);
       state.byID[lessonID].notes.push(noteID);
     },
+    allNotesFetched: (state, action) => {
+      state.byID[action.payload].allNotesFetched = true;
+    },
   },
 });
 
@@ -55,6 +60,7 @@ export const {
   editEntry,
   deleteEntry,
   addNoteToEntry,
+  allNotesFetched,
 } = planEntriesSlice.actions;
 
 export const planEntriesReducer = planEntriesSlice.reducer;
@@ -66,3 +72,10 @@ export const getPlanEntryByID = (id) => (state) => state.planEntries.byID[id];
 
 export const getIfAllEntriesFetched = (state) =>
   state.planEntries.allEntriesFetched;
+
+export const getIfAllNotesFetched = (entryID) => (state) => {
+  if (state.planEntries.byID[entryID])
+    return state.planEntries.byID[entryID].allNotesFetched;
+
+  return undefined;
+};

@@ -5,7 +5,7 @@ export const getAllNotes = async (req, res) => {
   try {
     const { lessonID } = req.params;
     const notesIDs = await planEntry.findById(lessonID, { _id: 0, notes: 1 });
-    const notes = await note.find({ _id: { $in: notesIDs } });
+    const notes = await note.find({ _id: { $in: notesIDs.notes } });
 
     return res.status(200).json(notes);
   } catch {

@@ -46,3 +46,12 @@ export const { addFetchedNotes, addNewNote, editNote, deleteNote } =
 export const notesReducer = notesSlice.reducer;
 
 export const getNoteByID = (noteID) => (state) => state.notes.byID[noteID];
+
+export const getAllNotesOfEntry = (entryID) => (state) => {
+  if (state.planEntries.byID[entryID])
+    return state.planEntries.byID[entryID].notes.map(
+      (noteID) => state.notes.byID[noteID]
+    );
+
+  return undefined;
+};
