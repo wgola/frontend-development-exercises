@@ -119,7 +119,7 @@ export const PlanEntryForm = ({ type }) => {
   return (
     <FormProvider {...formMethods}>
       <Form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <PlanEntryFormFields />
+        <PlanEntryFormFields loading={loading} />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
           <Button

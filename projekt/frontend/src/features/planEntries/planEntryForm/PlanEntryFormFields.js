@@ -7,15 +7,15 @@ const StyledDiv = styled("div")`
   justify-content: space-between;
 `;
 
-export const PlanEntryFormFields = () => (
+export const PlanEntryFormFields = ({ loading }) => (
   <>
-    <Input label="subject" type="text" />
-    <Input label="teacher" type="text" />
-    <Input label="day" select options={days} />
+    <Input label="subject" type="text" disabled={loading} />
+    <Input label="teacher" type="text" disabled={loading} />
+    <Input label="day" select options={days} disabled={loading} />
     <StyledDiv>
-      <Input label="time" type="time" />
-      <Input label="difficulty" type="number" />
+      <Input label="time" type="time" disabled={loading} />
+      <Input label="difficulty" type="number" disabled={loading} />
     </StyledDiv>
-    <Input label="image" type="text" />
+    <Input label="image" type="text" disabled={loading} />
   </>
 );

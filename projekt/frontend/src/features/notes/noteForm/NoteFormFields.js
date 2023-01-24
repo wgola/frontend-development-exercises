@@ -5,11 +5,11 @@ const TextArea = styled(Input)`
   height: 170px;
 `;
 
-export const NoteFormFields = () => (
+export const NoteFormFields = ({ loading }) => (
   <>
-    <Input label="title" type="text" />
-    <TextArea label="content" multiline rows={5} />
-    <Input label="importance" type="number" />
-    <Input label="image" type="text" />
+    <Input label="title" type="text" disabled={loading} />
+    <TextArea label="content" multiline rows={5} disabled={loading} />
+    <Input label="importance" type="number" disabled={loading} />
+    <Input label="image" type="text" disabled={loading} />
   </>
 );

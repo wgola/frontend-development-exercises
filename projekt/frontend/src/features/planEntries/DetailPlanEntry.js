@@ -11,6 +11,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
 import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
+import { deleteNotesByIDs } from "../notes/notesSlice";
 
 const StyledLayout = styled("div")`
   width: 1050px;
@@ -106,6 +107,7 @@ export const DetailPlanEntry = () => {
       await axios.delete(`/planEntry/${lessonID}`);
       setMessage("Entry deleted! Redirecting to all entries...");
       setTimeout(() => {
+        dispatch(deleteNotesByIDs(planEntry.notes));
         dispatch(deleteEntry(lessonID));
         navigate("/planEntry");
       }, 2000);

@@ -37,11 +37,21 @@ export const notesSlice = createSlice({
       delete state.byID[_id];
       state.allIDs = state.allIDs.filter((id) => id !== _id);
     },
+    deleteNotesByIDs: (state, action) => {
+      const ids = action.payload;
+      ids.forEach((id) => delete state.byID[id]);
+      state.allIDs = state.allIDs.filter((id) => !ids.includes(id));
+    },
   },
 });
 
-export const { addFetchedNotes, addNewNote, editNote, deleteNote } =
-  notesSlice.actions;
+export const {
+  addFetchedNotes,
+  addNewNote,
+  editNote,
+  deleteNote,
+  deleteNotesByIDs,
+} = notesSlice.actions;
 
 export const notesReducer = notesSlice.reducer;
 

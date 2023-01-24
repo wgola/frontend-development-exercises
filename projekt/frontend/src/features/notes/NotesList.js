@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../../axios";
 import { Header, Loading, Tile } from "../../components";
 import {
@@ -25,6 +25,7 @@ export const NotesList = () => {
   const [params] = useSearchParams();
   const { lessonID } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const allNotes = useSelector(getAllNotesOfEntry(lessonID));
   const ifAllNotesFetched = useSelector(getIfAllNotesFetched(lessonID));
@@ -32,6 +33,9 @@ export const NotesList = () => {
   useEffect(() => {
     const fetchNotes = async () => {
       const allNotes = await axios.get(`/planEntry/${lessonID}/note`);
+      if (allNotes.data.length === 0) {
+        navigate(`/planEntry/${lessonID}`);
+      }
       dispatch(addFetchedNotes(allNotes.data));
       dispatch(allNotesFetched(lessonID));
     };

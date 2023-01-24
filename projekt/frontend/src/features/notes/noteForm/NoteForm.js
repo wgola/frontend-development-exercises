@@ -118,7 +118,7 @@ export const NoteForm = ({ type }) => {
   return (
     <FormProvider {...formMethods}>
       <Form onSubmit={formMethods.handleSubmit(onSubmit)}>
-        <NoteFormFields />
+        <NoteFormFields loading={loading} />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
           <Button
