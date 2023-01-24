@@ -1,17 +1,25 @@
+import { useSearchParams } from "react-router-dom";
 import { Form, Header } from "../../../components";
 import { SortInput } from "./SortInput";
 
-export const SortForm = ({ sort, setSort }) => {
+export const SortForm = () => {
+  const [params, setParams] = useSearchParams();
+
   return (
     <>
       <Header>Sort</Header>
       <Form>
         <SortInput
-          defaultValue={`${sort.field}-${sort.type}`}
-          value={`${sort.field}-${sort.type}`}
+          defaultValue={params.get("sort") || "subject-asc"}
+          value={params.get("sort") || "subject-asc"}
           onChange={(event) => {
-            const [field, type] = event.target.value.split("-");
-            setSort({ field, type });
+            const value = event.target.value;
+            setParams({
+              subject: params.get("subject") || "",
+              day: params.get("day") || "",
+              difficulty: params.get("difficulty") || "1,10",
+              sort: value,
+            });
           }}
         />
       </Form>
