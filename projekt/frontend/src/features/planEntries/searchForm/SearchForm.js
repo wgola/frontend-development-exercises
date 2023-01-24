@@ -4,20 +4,12 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { FormProvider, useForm } from "react-hook-form";
 import { SearchFormFields } from "./SearchFormFields";
 import { useSearchParams } from "react-router-dom";
+import { getSearchParams } from "../utils/getSearchParams";
 
 export const SearchForm = () => {
   const [params, setParams] = useSearchParams();
 
-  const initialValues = {
-    subject: params.get("subject") || "",
-    day: params.get("day") || "",
-    difficulty: params.get("difficulty")
-      ? params
-          .get("difficulty")
-          .split(",")
-          .map((value) => parseInt(value))
-      : [1, 10],
-  };
+  const initialValues = getSearchParams(params);
 
   const formMethods = useForm({
     defaultValues: initialValues,

@@ -1,6 +1,8 @@
 import { useSearchParams } from "react-router-dom";
 import { Form, Header } from "../../../components";
+import { getSortParam } from "../utils/getSortParam";
 import { SortInput } from "./SortInput";
+import { getSearchParams } from "../utils/getSearchParams";
 
 export const SortForm = () => {
   const [params, setParams] = useSearchParams();
@@ -10,14 +12,12 @@ export const SortForm = () => {
       <Header>Sort</Header>
       <Form>
         <SortInput
-          defaultValue={params.get("sort") || "subject-asc"}
-          value={params.get("sort") || "subject-asc"}
+          defaultValue={getSortParam(params)}
+          value={getSortParam(params)}
           onChange={(event) => {
             const value = event.target.value;
             setParams({
-              subject: params.get("subject") || "",
-              day: params.get("day") || "",
-              difficulty: params.get("difficulty") || "1,10",
+              ...getSearchParams(params),
               sort: value,
             });
           }}

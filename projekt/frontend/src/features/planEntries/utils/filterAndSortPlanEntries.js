@@ -1,17 +1,9 @@
 import lodash from "lodash";
+import { getSearchParams } from "./getSearchParams";
 
 export const filterAndSortPlanEntries = (params, allPlanEntries) => {
   const filteredEntries = allPlanEntries.filter((entry) => {
-    const [subject, day, difficulty] = [
-      params.get("subject"),
-      params.get("day"),
-      params.get("difficulty")
-        ? params
-            .get("difficulty")
-            .split(",")
-            .map((value) => parseInt(value))
-        : "",
-    ];
+    const { subject, day, difficulty } = getSearchParams(params);
 
     const filters = [];
     if (subject) filters.push(entry.subject === subject);
