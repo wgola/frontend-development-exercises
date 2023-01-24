@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { SearchFormFields } from "./SearchFormFields";
 import { useSearchParams } from "react-router-dom";
 import { getSearchParams } from "../utils/getSearchParams";
+import { getSortParam } from "../../notes/utils/getSortParam";
 
 export const SearchForm = () => {
   const [params, setParams] = useSearchParams();
@@ -21,12 +22,12 @@ export const SearchForm = () => {
       subject: data.subject,
       day: data.day,
       difficulty: convertedDifficulty,
-      sort: params.get("sort") || "",
+      sort: getSortParam(params),
     });
   };
 
   const onReset = () => {
-    setParams({ sort: params.get("sort") || "" });
+    setParams({ sort: getSortParam(params) });
     formMethods.reset({ title: "", day: "", difficulty: [1, 10] });
   };
 

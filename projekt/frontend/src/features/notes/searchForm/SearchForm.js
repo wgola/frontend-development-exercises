@@ -4,20 +4,13 @@ import { SearchFormFields } from "./SearchFormFields";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
 import { useSearchParams } from "react-router-dom";
+import { getSearchParams } from "../utils/getSearchParams";
+import { getSortParam } from "../utils/getSortParam";
 
 export const SearchForm = () => {
   const [params, setParams] = useSearchParams();
 
-  const initialValues = {
-    title: params.get("title") || "",
-    "content length": params.get("content length") || "",
-    importance: params.get("importance")
-      ? params
-          .get("importance")
-          .split(",")
-          .map((value) => parseInt(value))
-      : [1, 10],
-  };
+  const initialValues = getSearchParams(params);
 
   const formMethods = useForm({
     defaultValues: initialValues,
@@ -29,12 +22,12 @@ export const SearchForm = () => {
       title: data.title,
       "content length": data["content length"],
       importance: convertedImportance,
-      sort: params.get("sort") || "",
+      sort: getSortParam(params),
     });
   };
 
   const onReset = () => {
-    setParams({ sort: params.get("sort") || "" });
+    setParams({ sort: getSortParam(params) });
     formMethods.reset({ title: "", "content length": "", importance: [1, 10] });
   };
 

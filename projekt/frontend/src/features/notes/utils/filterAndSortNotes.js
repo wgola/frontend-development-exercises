@@ -1,22 +1,11 @@
+import { getSearchParams } from "./getSearchParams";
+import { getSortParam } from "./getSortParam";
 import lodash from "lodash";
 
 export const filterAndSortNotes = (params, allNotes) => {
   const filteredNotes = allNotes.filter((note) => {
-    const [title, contentLength, importance] = [
-      params.get("title"),
-      params.get("content length")
-        ? params
-            .get("content length")
-            .split("-")
-            .map((value) => parseInt(value))
-        : "",
-      params.get("importance")
-        ? params
-            .get("importance")
-            .split(",")
-            .map((value) => parseInt(value))
-        : "",
-    ];
+    const { title, contentLength, importance } = getSearchParams(params);
+
     const filters = [];
     if (title) filters.push(note.title === title);
     if (contentLength && contentLength[0])
@@ -32,12 +21,8 @@ export const filterAndSortNotes = (params, allNotes) => {
     return filters.every((filter) => filter);
   });
 
-  if (params.get("sort")) {
-    const [field, type] = params.get("sort").split("-");
-    const sortedNotes = lodash.orderBy(filteredNotes, [field], [type]);
+  const [field, type] = getSortParam(params).split("-");
+  const sortedNotes = lodash.orderBy(filteredNotes, [field], [type]);
 
-    return sortedNotes;
-  }
-
-  return filteredNotes;
+  return sortedNotes;
 };

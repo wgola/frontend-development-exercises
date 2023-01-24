@@ -1,5 +1,6 @@
 import lodash from "lodash";
 import { getSearchParams } from "./getSearchParams";
+import { getSortParam } from "./getSortParam";
 
 export const filterAndSortPlanEntries = (params, allPlanEntries) => {
   const filteredEntries = allPlanEntries.filter((entry) => {
@@ -16,12 +17,8 @@ export const filterAndSortPlanEntries = (params, allPlanEntries) => {
     return filters.every((value) => value);
   });
 
-  if (params.get("sort")) {
-    const [field, type] = params.get("sort").split("-");
-    const sortedEntries = lodash.orderBy(filteredEntries, [field], [type]);
+  const [field, type] = getSortParam(params).split("-");
+  const sortedEntries = lodash.orderBy(filteredEntries, [field], [type]);
 
-    return sortedEntries;
-  }
-
-  return filteredEntries;
+  return sortedEntries;
 };
