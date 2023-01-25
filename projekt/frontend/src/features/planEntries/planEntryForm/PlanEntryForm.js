@@ -1,29 +1,29 @@
-import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
-import { Button, Form, ButtonsDiv, Loading } from "../../../components";
-import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
+import { SubmitButton, ResetButton } from "../../../components/buttons";
+import { Form, ButtonsDiv, Loading } from "../../../components";
 import { PlanEntryFormFields } from "./PlanEntryFormFields.js";
+import { useNavigate, useParams } from "react-router-dom";
 import { FormProvider, useForm } from "react-hook-form";
 import validationSchema from "./planEntryValidation.js";
+import { useDispatch, useSelector } from "react-redux";
 import { createEntry } from "../utils/createEntry.js";
+import { useEffect, useState } from "react";
+import axios from "../../../axios.js";
 import {
   addNewEntry,
   editEntry,
   getPlanEntryByID,
 } from "../planEntriesSlice.js";
-import { useNavigate, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../../../axios.js";
-import { useEffect, useState } from "react";
 
 export const PlanEntryForm = ({ type }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { lessonID } = useParams();
   const entry = useSelector(getPlanEntryByID(lessonID));
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (type === "edit" && !entry) navigate(`/planEntry/${lessonID}`);
-  }, [type, entry, lessonID, navigate]);
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -56,7 +56,6 @@ export const PlanEntryForm = ({ type }) => {
   const onError = (error) => {
     setTimeout(() => {
       setLoading(false);
-      console.log(error);
       setMessage(`Error: ${error.response.data.message}`);
       setTimeout(() => setMessage(""), 4000);
     }, 2000);
@@ -122,21 +121,8 @@ export const PlanEntryForm = ({ type }) => {
         <PlanEntryFormFields loading={loading} />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
-          <Button
-            type="submit"
-            disabled={loading}
-            startIcon={<PublishOutlinedIcon />}
-          >
-            Submit
-          </Button>
-          <Button
-            type="button"
-            onClick={onReset}
-            disabled={loading}
-            startIcon={<RestartAltOutlinedIcon />}
-          >
-            Reset
-          </Button>
+          <SubmitButton disabled={loading} />
+          <ResetButton onClick={onReset} disabled={loading} />
         </ButtonsDiv>
       </Form>
     </FormProvider>

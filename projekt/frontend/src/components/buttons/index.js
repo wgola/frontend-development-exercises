@@ -6,3 +6,6 @@ export * from "./AllNotesButton";
 export * from "./HomeButton";
 export * from "./AddEntryButton";
 export * from "./ToEntryButton";
+export * from "./SubmitButton";
+export * from "./ResetButton";
+export * from "./SearchButton";
