@@ -1,8 +1,7 @@
-import { Header, Tile, ButtonsDiv, Button } from "../../components";
+import { Header, Tile, ButtonsDiv } from "../../components";
 import { PlanEntryForm } from "./planEntryForm/PlanEntryForm";
-import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import { useNavigate, useParams } from "react-router-dom";
+import { AllEntriesButton, ToEntryButton } from "../../components/buttons";
 
 export const EditPlanEntry = () => {
   const navigate = useNavigate();
@@ -17,20 +16,8 @@ export const EditPlanEntry = () => {
       <Header>Edit entry</Header>
       <PlanEntryForm type="edit" />
       <ButtonsDiv>
-        <Button
-          type="button"
-          onClick={onAllEntriesClicked}
-          startIcon={<DensitySmallOutlinedIcon />}
-        >
-          All entries
-        </Button>
-        <Button
-          type="button"
-          onClick={onToEntryClicked}
-          startIcon={<ArrowBackIosNewOutlinedIcon />}
-        >
-          To entry
-        </Button>
+        <AllEntriesButton onClick={onAllEntriesClicked} />
+        <ToEntryButton onClick={onToEntryClicked} />
       </ButtonsDiv>
     </Tile>
   );

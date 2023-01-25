@@ -5,3 +5,4 @@ export * from "./AddNoteButton";
 export * from "./AllNotesButton";
 export * from "./HomeButton";
 export * from "./AddEntryButton";
+export * from "./ToEntryButton";
