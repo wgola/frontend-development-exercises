@@ -1,28 +1,27 @@
-import { useEffect, useState } from "react";
+import { SubmitButton, ResetButton } from "../../../components/buttons";
+import { addNoteToEntry } from "../../planEntries/planEntriesSlice";
+import { addNewNote, editNote, getNoteByID } from "../notesSlice";
+import { ButtonsDiv, Form, Loading } from "../../../components";
+import { useNavigate, useParams } from "react-router-dom";
+import validationSchema from "./noteValidationSchema.js";
 import { FormProvider, useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { ButtonsDiv, Form, Loading, Button } from "../../../components";
-import { addNewNote, editNote, getNoteByID } from "../notesSlice";
-import validationSchema from "./noteValidationSchema.js";
 import { NoteFormFields } from "./NoteFormFields";
-import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
-import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
-import axios from "../../../axios";
 import { createNote } from "../utils/createNote";
-import { addNoteToEntry } from "../../planEntries/planEntriesSlice";
+import { useEffect, useState } from "react";
+import axios from "../../../axios";
 
 export const NoteForm = ({ type }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const { lessonID, noteID } = useParams();
   const note = useSelector(getNoteByID(noteID));
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (type === "edit" && !note)
       navigate(`/planEntry/${lessonID}/note/${noteID}`);
-  }, [type, note, lessonID, navigate, noteID]);
+  }, []);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -121,21 +120,8 @@ export const NoteForm = ({ type }) => {
         <NoteFormFields loading={loading} />
         <Loading isLoading={loading} message={message} />
         <ButtonsDiv>
-          <Button
-            type="submit"
-            disabled={loading}
-            startIcon={<PublishOutlinedIcon />}
-          >
-            Submit
-          </Button>
-          <Button
-            type="button"
-            onClick={onReset}
-            disabled={loading}
-            startIcon={<RestartAltOutlinedIcon />}
-          >
-            Reset
-          </Button>
+          <SubmitButton disabled={loading} />
+          <ResetButton onClick={onReset} disabled={loading} />
         </ButtonsDiv>
       </Form>
     </FormProvider>
