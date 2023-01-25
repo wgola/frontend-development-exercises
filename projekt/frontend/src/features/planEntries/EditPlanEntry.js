@@ -1,7 +1,7 @@
-import { Header, Tile, ButtonsDiv } from "../../components";
-import { PlanEntryForm } from "./planEntryForm/PlanEntryForm";
-import { useNavigate, useParams } from "react-router-dom";
 import { AllEntriesButton, ToEntryButton } from "../../components/buttons";
+import { PlanEntryForm } from "./planEntryForm/PlanEntryForm";
+import { Header, Tile, ButtonsDiv } from "../../components";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const EditPlanEntry = () => {
   const navigate = useNavigate();
