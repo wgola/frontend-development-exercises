@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 
 const StyledDiv = styled("div")`
   padding: 17px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ theme }) => theme.palette.secondary.light};
   width: 850px;
   display: flex;
   flex-direction: column;

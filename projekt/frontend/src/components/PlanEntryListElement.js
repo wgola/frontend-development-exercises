@@ -8,7 +8,7 @@ const StyledEntry = styled("div")`
   flex-direction: column;
   padding: 10px;
   border-radius: 15px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ theme }) => theme.palette.secondary.light};
 `;
 
 const Title = styled("div")`

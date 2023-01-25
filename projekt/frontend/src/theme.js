@@ -3,20 +3,18 @@ import { createTheme } from "@mui/material/styles";
 export default createTheme({
   palette: {
     background: {
-      default: "#565551",
-      main: "#a3a198",
+      default: "#a19f9a",
+      main: "#fff3d4",
     },
     primary: {
-      main: "#f3eadb",
+      main: "#999496",
     },
     secondary: {
-      main: "#e4f3db",
-    },
-    success: {
-      main: "#dbf3de",
+      main: "#807c73",
+      light: "#bdb5b8",
     },
     error: {
-      main: "#000000",
+      main: "#87274e",
     },
   },
 });

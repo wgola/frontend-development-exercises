@@ -7,7 +7,7 @@ const StyledNote = styled("div")`
   width: 500px;
   display: flex;
   flex-direction: row;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
+  background-color: ${({ theme }) => theme.palette.secondary.light};
   padding: 15px;
   border-radius: 15px;
 `;
