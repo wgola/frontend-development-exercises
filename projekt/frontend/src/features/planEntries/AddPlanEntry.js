@@ -1,7 +1,6 @@
-import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
-import { Button, ButtonsDiv, Tile, Header } from "../../components";
+import { AllEntriesButton, HomeButton } from "../../components/buttons";
 import { PlanEntryForm } from "./planEntryForm/PlanEntryForm.js";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import { ButtonsDiv, Tile, Header } from "../../components";
 import { useNavigate } from "react-router-dom";
 
 export const AddPlanEntry = () => {
@@ -16,20 +15,8 @@ export const AddPlanEntry = () => {
       <Header>Add new entry</Header>
       <PlanEntryForm type="add" />
       <ButtonsDiv>
-        <Button
-          type="button"
-          onClick={onAllEntriesClick}
-          startIcon={<DensitySmallOutlinedIcon />}
-        >
-          All entries
-        </Button>
-        <Button
-          type="button"
-          onClick={onHomeClick}
-          startIcon={<HomeOutlinedIcon />}
-        >
-          Home
-        </Button>
+        <AllEntriesButton onClick={onAllEntriesClick} />
+        <HomeButton onClick={onHomeClick} />
       </ButtonsDiv>
     </Tile>
   );
