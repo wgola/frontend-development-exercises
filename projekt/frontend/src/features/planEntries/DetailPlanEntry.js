@@ -1,10 +1,3 @@
-import {
-  StyledLayout,
-  LeftDiv,
-  RightDiv,
-  Info,
-  MessageDiv,
-} from "../../components/detailComponents";
 import { addNewEntry, deleteEntry, getPlanEntryByID } from "./planEntriesSlice";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Header, Loading, Tile, Image } from "../../components";
@@ -18,6 +11,13 @@ import {
   ButtonDiv,
   ModificationTime,
 } from "../../components/detailPlanEntryComponents";
+import {
+  StyledLayout,
+  LeftDiv,
+  RightDiv,
+  Info,
+  MessageDiv,
+} from "../../components/detailComponents";
 import {
   DeleteButton,
   EditButton,
