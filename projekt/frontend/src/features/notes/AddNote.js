@@ -1,12 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, ButtonsDiv, Header, Tile } from "../../components";
+import { ButtonsDiv, Header, Tile } from "../../components";
 import { NoteForm } from "./noteForm/NoteForm";
-import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
+import { AllNotesButton, ToEntryButton } from "../../components/buttons";
 
 export const AddNote = () => {
-  const { lessonID } = useParams();
   const navigate = useNavigate();
+  const { lessonID } = useParams();
 
   const onAllNotesClick = () => navigate(`/planEntry/${lessonID}/note`);
 
@@ -17,15 +16,8 @@ export const AddNote = () => {
       <Header>Add new note</Header>
       <NoteForm type="add" />
       <ButtonsDiv>
-        <Button onClick={onAllNotesClick} startIcon={<NoteAltOutlinedIcon />}>
-          All notes
-        </Button>
-        <Button
-          onClick={onToEntryClick}
-          startIcon={<ArrowBackIosNewOutlinedIcon />}
-        >
-          To entry
-        </Button>
+        <AllNotesButton onClick={onAllNotesClick} />
+        <ToEntryButton onClick={onToEntryClick} />
       </ButtonsDiv>
     </Tile>
   );
