@@ -1,67 +1,59 @@
 import ArrowDropUpOutlinedIcon from "@mui/icons-material/ArrowDropUpOutlined";
 import ArrowDropDownOutlinedIcon from "@mui/icons-material/ArrowDropDownOutlined";
-import { styled } from "@mui/material/styles";
-
-const StyledLabel = styled("span")`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+import { SortOption } from "../../../components";
 
 export const noteSortOptions = [
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropDownOutlinedIcon />
         Title
-      </StyledLabel>
+      </SortOption>
     ),
     value: "title-asc",
   },
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropUpOutlinedIcon />
         Title
-      </StyledLabel>
+      </SortOption>
     ),
     value: "title-desc",
   },
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropDownOutlinedIcon />
         Importance
-      </StyledLabel>
+      </SortOption>
     ),
     value: "importance-desc",
   },
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropUpOutlinedIcon />
         Importance
-      </StyledLabel>
+      </SortOption>
     ),
     value: "importance-asc",
   },
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropDownOutlinedIcon />
         Last modification
-      </StyledLabel>
+      </SortOption>
     ),
     value: "modificationTime-desc",
   },
   {
     label: (
-      <StyledLabel>
+      <SortOption>
         <ArrowDropUpOutlinedIcon />
         Last modification
-      </StyledLabel>
+      </SortOption>
     ),
     value: "modificationTime-asc",
   },

@@ -11,3 +11,4 @@ export * from "./Slider";
 export * from "./Tile";
 export * from "./List";
 export * from "./ListLayout";
+export * from "./SortOption";
