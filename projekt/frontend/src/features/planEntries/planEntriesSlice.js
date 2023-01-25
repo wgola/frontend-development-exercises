@@ -9,34 +9,65 @@ export const planEntriesSlice = createSlice({
     allEntriesFetched: false,
   },
   reducers: {
-    addFetchedEntries: (state, action) => {
-      state.allIDs = [];
-      action.payload.forEach((planEntry) => {
+    addFetchedEntries: {
+      reducer: (state, action) => {
+        state.allIDs = [];
+        action.payload.forEach((planEntry) => {
+          const allNotesFetched = state.byID[planEntry._id]
+            ? state.byID[planEntry._id].allNotesFetched
+            : false;
+
+          state.byID[planEntry._id] = {
+            allNotesFetched: allNotesFetched,
+            ...planEntry,
+          };
+          state.allIDs.push(planEntry._id);
+        });
+
+        state.allEntriesFetched = true;
+      },
+      prepare: (fetchedEntries) => {
+        const preparedEntries = fetchedEntries.map((planEntry) => {
+          const { __v, modificationTime, ...entry } = planEntry;
+
+          return {
+            ...entry,
+            modificationTime: new Date(modificationTime).toUTCString(),
+          };
+        });
+
+        return { payload: { preparedEntries } };
+      },
+    },
+    addNewEntry: {
+      reducer: (state, action) => {
+        state.byID[action.payload._id] = action.payload;
+        state.allIDs.push(action.payload._id);
+      },
+      prepare: (planEntry) => {
         const { __v, modificationTime, ...entry } = planEntry;
-        const allNotesFetched = state.byID[entry._id]
-          ? state.byID[entry._id].allNotesFetched
-          : false;
-        state.byID[entry._id] = {
-          allNotesFetched: allNotesFetched,
-          modificationTime: new Date(modificationTime).toUTCString(),
-          ...entry,
+
+        return {
+          payload: {
+            allNotesFetched: false,
+            modificationTime: new Date(modificationTime).toUTCString(),
+            ...entry,
+          },
         };
-        state.allIDs.push(planEntry._id);
-      });
-      state.allEntriesFetched = true;
+      },
     },
-    addNewEntry: (state, action) => {
-      const { __v, modificationTime, ...entry } = action.payload;
-      state.byID[entry._id] = {
-        allNotesFetched: false,
-        modificationTime: new Date(modificationTime).toUTCString(),
-        ...entry,
-      };
-      state.allIDs.push(entry._id);
-    },
-    editEntry: (state, action) => {
-      const { __v, ...entry } = action.payload;
-      state.byID[entry._id] = lodash.merge(state.byID[entry._id], entry);
+    editEntry: {
+      reduer: (state, action) => {
+        state.byID[action.payload._id] = lodash.merge(
+          state.byID[action.payload._id],
+          action.payload
+        );
+      },
+      prepare: (editedEntry) => {
+        const { __v, ...entry } = editedEntry;
+
+        return { payload: { ...entry } };
+      },
     },
     deleteEntry: (state, action) => {
       const _id = action.payload;
@@ -52,7 +83,6 @@ export const planEntriesSlice = createSlice({
     },
     addNoteToEntry: (state, action) => {
       const { lessonID, noteID } = action.payload;
-      console.log(lessonID, noteID);
       state.byID[lessonID].notes.push(noteID);
     },
     allNotesFetched: (state, action) => {
