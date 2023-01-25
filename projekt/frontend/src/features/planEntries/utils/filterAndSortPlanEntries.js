@@ -18,7 +18,7 @@ export const filterAndSortPlanEntries = (params, allPlanEntries) => {
   });
 
   const [field, type] = getSortParam(params).split("-");
-  if (field === "modificationDate") {
+  if (field === "modificationTime") {
     const sortedEntries = lodash.orderBy(
       filteredEntries,
       [(entry) => new Date(entry.modificationTime)],

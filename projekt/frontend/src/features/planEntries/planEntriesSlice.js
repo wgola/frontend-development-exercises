@@ -50,8 +50,8 @@ export const planEntriesSlice = createSlice({
         return {
           payload: {
             allNotesFetched: false,
-            modificationTime: new Date(modificationTime).toUTCString(),
             ...entry,
+            modificationTime: new Date(modificationTime).toUTCString(),
           },
         };
       },
