@@ -50,7 +50,6 @@ export const NoteForm = ({ type }) => {
   const onError = (error) => {
     setTimeout(() => {
       setLoading(false);
-      console.log(error);
       setMessage(`Error: ${error.response.data.message}`);
       setTimeout(() => setMessage(""), 4000);
     }, 2000);
