@@ -36,7 +36,7 @@ export const planEntriesSlice = createSlice({
           };
         });
 
-        return { payload: { preparedEntries } };
+        return { payload: preparedEntries };
       },
     },
     addNewEntry: {

@@ -8,29 +8,56 @@ export const notesSlice = createSlice({
     allIDs: [],
   },
   reducers: {
-    addFetchedNotes: (state, action) => {
-      state.byID = {};
-      state.allIDs = [];
-      action.payload.forEach((planNote) => {
+    addFetchedNotes: {
+      reducer: (state, action) => {
+        state.byID = {};
+        state.allIDs = [];
+        action.payload.forEach((planNote) => {
+          state.byID[planNote._id] = planNote;
+          state.allIDs.push(planNote._id);
+        });
+      },
+      prepare: (fetchedNotes) => {
+        const preparedNotes = fetchedNotes.map((planNote) => {
+          const { __v, modificationTime, ...note } = planNote;
+
+          return {
+            ...note,
+            modificationTime: new Date(modificationTime).toUTCString(),
+          };
+        });
+
+        return { payload: preparedNotes };
+      },
+    },
+    addNewNote: {
+      reducer: (state, action) => {
+        state.byID[action.payload._id] = action.payload;
+        state.allIDs.push(action.payload._id);
+      },
+      prepare: (planNote) => {
         const { __v, modificationTime, ...note } = planNote;
-        state.byID[note._id] = {
-          modificationTime: new Date(modificationTime).toUTCString(),
-          ...note,
+
+        return {
+          payload: {
+            ...note,
+            modificationTime: new Date(modificationTime).toUTCString(),
+          },
         };
-        state.allIDs.push(note._id);
-      });
+      },
     },
-    addNewNote: (state, action) => {
-      const { __v, modificationTime, ...note } = action.payload;
-      state.byID[note._id] = {
-        modificationTime: new Date(modificationTime).toUTCString(),
-        ...note,
-      };
-      state.allIDs.push(note._id);
-    },
-    editNote: (state, action) => {
-      const { __v, ...note } = action.payload;
-      state.byID[note._id] = lodash.merge(state.byID[note._id], note);
+    editNote: {
+      reducer: (state, action) => {
+        state.byID[action.payload._id] = lodash.merge(
+          state.byID[action.payload._id],
+          action.payload
+        );
+      },
+      prepare: (editedNote) => {
+        const { __v, ...note } = editedNote;
+
+        return { payload: { ...note } };
+      },
     },
     deleteNote: (state, action) => {
       const _id = action.payload;
