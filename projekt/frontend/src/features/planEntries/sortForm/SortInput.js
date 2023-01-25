@@ -1,6 +1,6 @@
-import { styled } from "@mui/material/styles";
-import { MenuItem, TextField } from "@mui/material";
 import { entrySortOptions } from "./entrySortOptions";
+import { MenuItem, TextField } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 const StyledTextField = styled(TextField)`
   & label {
