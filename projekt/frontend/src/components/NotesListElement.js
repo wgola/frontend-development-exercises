@@ -1,7 +1,6 @@
-import { styled } from "@mui/material/styles";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "./Button";
-import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
+import { styled } from "@mui/material/styles";
+import { MoreButton } from "./buttons";
 
 const StyledNote = styled("div")`
   margin: 5px;
@@ -63,13 +62,7 @@ export const NotesListElement = ({ note }) => {
       </LeftColumn>
       <RightColumn>
         <StyledImg src={note.image} alt={"image"} />
-        <Button
-          type="button"
-          onClick={onMoreClicked}
-          startIcon={<MoreHorizOutlinedIcon />}
-        >
-          More
-        </Button>
+        <MoreButton onClick={onMoreClicked} />
       </RightColumn>
     </StyledNote>
   );

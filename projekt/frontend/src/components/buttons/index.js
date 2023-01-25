@@ -10,3 +10,4 @@ export * from "./SubmitButton";
 export * from "./ResetButton";
 export * from "./SearchButton";
 export * from "./ToNoteButton";
+export * from "./MoreButton";

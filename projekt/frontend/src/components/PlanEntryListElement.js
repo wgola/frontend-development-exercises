@@ -1,7 +1,6 @@
-import MoreHorizOutlinedIcon from "@mui/icons-material/MoreHorizOutlined";
 import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { Button } from "./Button";
+import { MoreButton } from "./buttons";
 
 const StyledEntry = styled("div")`
   width: 500px;
@@ -46,13 +45,7 @@ export const PlanEntryListElement = ({ planEntry }) => {
       </Description>
       <ModificationDate>
         Last modified: {planEntry.modificationTime}
-        <Button
-          type="button"
-          onClick={onMoreClicked}
-          startIcon={<MoreHorizOutlinedIcon />}
-        >
-          More
-        </Button>
+        <MoreButton onClick={onMoreClicked} />
       </ModificationDate>
     </StyledEntry>
   );

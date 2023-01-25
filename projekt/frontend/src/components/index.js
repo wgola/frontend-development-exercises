@@ -1,4 +1,3 @@
-export * from "./Button.js";
 export * from "./ButtonsDiv.js";
 export * from "./Form";
 export * from "./Header";

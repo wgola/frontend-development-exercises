@@ -1,8 +1,8 @@
 import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
-import { Button } from "../Button";
+import { Button } from "./Button";
 
 export const AllNotesButton = (props) => (
-  <Button {...props} startIcon={<NoteAltOutlinedIcon />}>
+  <Button {...props} type="button" startIcon={<NoteAltOutlinedIcon />}>
     All notes
   </Button>
 );

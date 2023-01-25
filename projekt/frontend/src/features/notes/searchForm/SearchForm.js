@@ -1,10 +1,9 @@
-import { FormProvider, useForm } from "react-hook-form";
-import { ButtonsDiv, Form, Header, Button } from "../../../components";
-import { SearchFormFields } from "./SearchFormFields";
-import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import RestartAltOutlinedIcon from "@mui/icons-material/RestartAltOutlined";
-import { useSearchParams } from "react-router-dom";
+import { SearchButton, ResetButton } from "../../../components/buttons";
+import { ButtonsDiv, Form, Header } from "../../../components";
 import { getSearchParams } from "../utils/getSearchParams";
+import { FormProvider, useForm } from "react-hook-form";
+import { SearchFormFields } from "./SearchFormFields";
+import { useSearchParams } from "react-router-dom";
 import { getSortParam } from "../utils/getSortParam";
 
 export const SearchForm = () => {
@@ -37,16 +36,8 @@ export const SearchForm = () => {
       <Form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <SearchFormFields />
         <ButtonsDiv>
-          <Button type="submit" startIcon={<SearchOutlinedIcon />}>
-            Search
-          </Button>
-          <Button
-            type="button"
-            onClick={onReset}
-            startIcon={<RestartAltOutlinedIcon />}
-          >
-            Reset
-          </Button>
+          <SearchButton />
+          <ResetButton onClick={onReset} />
         </ButtonsDiv>
       </Form>
     </FormProvider>

@@ -1,8 +1,8 @@
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { Button } from "../Button";
+import { Button } from "./Button";
 
 export const DeleteButton = (props) => (
-  <Button {...props} startIcon={<DeleteOutlineOutlinedIcon />}>
+  <Button {...props} type="button" startIcon={<DeleteOutlineOutlinedIcon />}>
     Delete
   </Button>
 );
