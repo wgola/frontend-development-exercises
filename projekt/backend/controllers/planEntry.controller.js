@@ -63,7 +63,6 @@ export const deletePlanEntry = async (req, res) => {
 
     return res.status(200).json({ message: "Succesfully deleted entry" });
   } catch (error) {
-    console.log(error);
     return res.status(500).json({ message: "Couldn't delete plan entry" });
   }
 };
