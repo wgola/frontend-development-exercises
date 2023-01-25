@@ -4,7 +4,11 @@ import lodash from "lodash";
 
 export const filterAndSortNotes = (params, allNotes) => {
   const filteredNotes = allNotes.filter((note) => {
-    const { title, contentLength, importance } = getSearchParams(params);
+    const {
+      title,
+      "content length": contentLength,
+      importance,
+    } = getSearchParams(params);
 
     const filters = [];
     if (title) filters.push(note.title === title);
@@ -22,6 +26,16 @@ export const filterAndSortNotes = (params, allNotes) => {
   });
 
   const [field, type] = getSortParam(params).split("-");
+  if (field === "modificationTime") {
+    const sortedNotes = lodash.orderBy(
+      filteredNotes,
+      [(note) => new Date(note.modificationTime)],
+      [type]
+    );
+
+    return sortedNotes;
+  }
+
   const sortedNotes = lodash.orderBy(filteredNotes, [field], [type]);
 
   return sortedNotes;

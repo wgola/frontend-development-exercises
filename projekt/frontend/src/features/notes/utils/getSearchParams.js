@@ -1,9 +1,12 @@
 export const getSearchParams = (params) => {
-  const possibleLengths = ["", "Any", "1-50", "51-100", "101-150", "151-175"];
+  const possibleLengths = ["1-50", "51-100", "101-150", "151-175"];
   const contentLengthSearch = possibleLengths.includes(
     params.get("content length")
   )
-    ? params.get("content length")
+    ? params
+        .get("content length")
+        .split("-")
+        .map((value) => parseInt(value))
     : "";
 
   const [lowerImportance, upperImportance] = params.get("importance")

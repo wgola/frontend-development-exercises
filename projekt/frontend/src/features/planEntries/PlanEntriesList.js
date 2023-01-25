@@ -65,6 +65,7 @@ export const PlanEntriesList = () => {
             {allPlanEntries.length === 0 ? (
               <p>There are no entries yet!</p>
             ) : (
+              ifAllEntriesFetched &&
               filterAndSortPlanEntries(params, allPlanEntries).map(
                 (planEntry) => (
                   <PlanEntryListElement

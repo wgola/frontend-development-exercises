@@ -10,8 +10,10 @@ import { Grid } from "@mui/material";
 import { useEffect } from "react";
 import axios from "../../axios";
 import {
+  addNewEntry,
   allNotesFetched,
   getIfAllNotesFetched,
+  getPlanEntryByID,
 } from "../planEntries/planEntriesSlice";
 
 export const NotesList = () => {
@@ -20,11 +22,16 @@ export const NotesList = () => {
 
   const [params] = useSearchParams();
   const { lessonID } = useParams();
+  const planEntry = useSelector(getPlanEntryByID(lessonID));
   const allNotes = useSelector(getAllNotesOfEntry(lessonID));
   const ifAllNotesFetched = useSelector(getIfAllNotesFetched(lessonID));
 
   useEffect(() => {
     const fetchNotes = async () => {
+      if (!planEntry) {
+        const fetchedEntry = await axios.get(`/planEntry/${lessonID}`);
+        dispatch(addNewEntry(fetchedEntry.data));
+      }
       const allNotes = await axios.get(`/planEntry/${lessonID}/note`);
       if (allNotes.data.length === 0) {
         navigate(`/planEntry/${lessonID}`);

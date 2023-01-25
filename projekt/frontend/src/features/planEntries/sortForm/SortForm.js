@@ -7,6 +7,8 @@ import { SortInput } from "./SortInput";
 export const SortForm = () => {
   const [params, setParams] = useSearchParams();
 
+  const { subject, day, difficulty } = getSearchParams(params);
+
   return (
     <>
       <Header>Sort</Header>
@@ -17,7 +19,9 @@ export const SortForm = () => {
           onChange={(event) => {
             const value = event.target.value;
             setParams({
-              ...getSearchParams(params),
+              subject: subject,
+              day: day,
+              difficulty: `${difficulty[0]},${difficulty[1]}`,
               sort: value,
             });
           }}
