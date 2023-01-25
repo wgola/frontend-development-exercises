@@ -1,32 +1,25 @@
+import { Header, List, ListLayout, Loading, Tile } from "../../components";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { NotesListElement } from "../../components/NotesListElement";
+import { addFetchedNotes, getAllNotesOfEntry } from "./notesSlice";
+import { filterAndSortNotes } from "./utils/filterAndSortNotes";
+import { useDispatch, useSelector } from "react-redux";
+import { SearchForm } from "./searchForm/SearchForm";
+import { SortForm } from "./sortForm/SortForm";
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axios from "../../axios";
-import { Header, Loading, Tile } from "../../components";
 import {
   allNotesFetched,
   getIfAllNotesFetched,
 } from "../planEntries/planEntriesSlice";
-import { addFetchedNotes, getAllNotesOfEntry } from "./notesSlice";
-import { styled } from "@mui/material/styles";
-import { NotesListElement } from "../../components/NotesListElement";
-import { SearchForm } from "./searchForm/SearchForm";
-import { SortForm } from "./sortForm/SortForm";
-import { filterAndSortNotes } from "./utils/filterAndSortNotes";
-
-const StyledList = styled("div")`
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-`;
 
 export const NotesList = () => {
-  const [params] = useSearchParams();
-  const { lessonID } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [params] = useSearchParams();
+  const { lessonID } = useParams();
   const allNotes = useSelector(getAllNotesOfEntry(lessonID));
   const ifAllNotesFetched = useSelector(getIfAllNotesFetched(lessonID));
 
@@ -43,7 +36,7 @@ export const NotesList = () => {
   }, []);
 
   return (
-    <Grid container spacing={2} style={{ width: "1100px", margin: "auto" }}>
+    <ListLayout container spacing={2}>
       <Grid item xs={4}>
         <Tile width={400}>
           <SearchForm />
@@ -54,14 +47,14 @@ export const NotesList = () => {
         <Tile width={600}>
           <Header>All notes</Header>
           <Loading />
-          <StyledList>
+          <List>
             {ifAllNotesFetched &&
               filterAndSortNotes(params, allNotes).map((note) => (
                 <NotesListElement key={note._id} note={note} />
               ))}
-          </StyledList>
+          </List>
         </Tile>
       </Grid>
-    </Grid>
+    </ListLayout>
   );
 };
