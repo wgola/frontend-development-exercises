@@ -58,6 +58,7 @@ export const DetailPlanEntry = () => {
       setLoading(false);
       setMessage("");
     }
+    // eslint-disable-next-line
   }, []);
 
   const onEditClicked = () => navigate(`/planEntry/${lessonID}/edit`);

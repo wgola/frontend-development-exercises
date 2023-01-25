@@ -10,11 +10,11 @@ export const notesSlice = createSlice({
   reducers: {
     addFetchedNotes: {
       reducer: (state, action) => {
-        state.byID = {};
-        state.allIDs = [];
         action.payload.forEach((planNote) => {
-          state.byID[planNote._id] = planNote;
-          state.allIDs.push(planNote._id);
+          if (!state.byID[planNote._id]) state.byID[planNote._id] = planNote;
+
+          if (!state.allIDs.includes(planNote._id))
+            state.allIDs.push(planNote._id);
         });
       },
       prepare: (fetchedNotes) => {

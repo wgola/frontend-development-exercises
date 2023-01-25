@@ -21,6 +21,7 @@ export const NoteForm = ({ type }) => {
   useEffect(() => {
     if (type === "edit" && !note)
       navigate(`/planEntry/${lessonID}/note/${noteID}`);
+    // eslint-disable-next-line
   }, []);
 
   const [loading, setLoading] = useState(false);

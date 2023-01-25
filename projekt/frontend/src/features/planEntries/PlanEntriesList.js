@@ -39,6 +39,7 @@ export const PlanEntriesList = () => {
       setLoading(false);
     };
     if (!ifAllEntriesFetched) fetchData();
+    // eslint-disable-next-line
   }, []);
 
   const onHomeClicked = () => navigate("/");

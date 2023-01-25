@@ -23,6 +23,7 @@ export const PlanEntryForm = ({ type }) => {
 
   useEffect(() => {
     if (type === "edit" && !entry) navigate(`/planEntry/${lessonID}`);
+    // eslint-disable-next-line
   }, []);
 
   const [loading, setLoading] = useState(false);

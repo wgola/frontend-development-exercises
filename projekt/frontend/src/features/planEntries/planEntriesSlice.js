@@ -11,17 +11,15 @@ export const planEntriesSlice = createSlice({
   reducers: {
     addFetchedEntries: {
       reducer: (state, action) => {
-        state.allIDs = [];
         action.payload.forEach((planEntry) => {
-          const allNotesFetched = state.byID[planEntry._id]
-            ? state.byID[planEntry._id].allNotesFetched
-            : false;
+          if (!state.byID[planEntry._id])
+            state.byID[planEntry._id] = {
+              allNotesFetched: false,
+              ...planEntry,
+            };
 
-          state.byID[planEntry._id] = {
-            allNotesFetched: allNotesFetched,
-            ...planEntry,
-          };
-          state.allIDs.push(planEntry._id);
+          if (!state.allIDs.includes(planEntry._id))
+            state.allIDs.push(planEntry._id);
         });
 
         state.allEntriesFetched = true;
@@ -57,7 +55,7 @@ export const planEntriesSlice = createSlice({
       },
     },
     editEntry: {
-      reduer: (state, action) => {
+      reducer: (state, action) => {
         state.byID[action.payload._id] = lodash.merge(
           state.byID[action.payload._id],
           action.payload

@@ -58,6 +58,7 @@ export const DetailNote = () => {
       setLoading(false);
       setMessage("");
     }
+    // eslint-disable-next-line
   }, []);
 
   const onDeleteClicked = async () => {
@@ -99,7 +100,7 @@ export const DetailNote = () => {
                 <span>
                   Title: <Info>{note.title}</Info>
                 </span>
-                <span>Content:</span>
+                <Info>Content:</Info>
                 <span>{note.content}</span>
               </LeftColumn>
               <RightColumn>
