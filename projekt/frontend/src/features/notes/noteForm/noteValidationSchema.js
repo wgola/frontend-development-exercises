@@ -2,16 +2,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 
 const entryValidationSchema = Yup.object().shape({
-  title: Yup.string()
-    .required("Field required!")
-    .matches(/^[aA-zZ\s]+$/, "No special characters allowed!")
-    .min(3)
-    .max(20),
-  content: Yup.string()
-    .required("Field required!")
-    .matches(/^[aA-zZ\s]+$/, "No special characters allowed!")
-    .min(3)
-    .max(175),
+  title: Yup.string().required("Field required!").min(3).max(20),
+  content: Yup.string().required("Field required!").min(3).max(175),
   importance: Yup.number()
     .typeError("Enter a number!")
     .required("Field required!")
