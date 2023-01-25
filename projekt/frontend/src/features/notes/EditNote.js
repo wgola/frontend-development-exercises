@@ -1,8 +1,7 @@
+import { AllNotesButton, ToNoteButton } from "../../components/buttons";
+import { ButtonsDiv, Header, Tile } from "../../components";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, ButtonsDiv, Header, Tile } from "../../components";
 import { NoteForm } from "./noteForm/NoteForm";
-import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 
 export const EditNote = () => {
   const navigate = useNavigate();
@@ -18,15 +17,8 @@ export const EditNote = () => {
       <Header>Edit note</Header>
       <NoteForm type="edit" />
       <ButtonsDiv>
-        <Button startIcon={<NoteAltOutlinedIcon />} onClick={onAllNotesClicked}>
-          All notes
-        </Button>
-        <Button
-          startIcon={<ArrowBackIosNewOutlinedIcon />}
-          onClick={onToNoteClicked}
-        >
-          to note
-        </Button>
+        <AllNotesButton onClick={onAllNotesClicked} />
+        <ToNoteButton onClick={onToNoteClicked} />
       </ButtonsDiv>
     </Tile>
   );
