@@ -1,88 +1,38 @@
+import { deleteNoteFromEntry } from "../planEntries/planEntriesSlice";
+import { addNewNote, deleteNote, getNoteByID } from "./notesSlice";
+import { Tile, Image, Header, Loading } from "../../components";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewNote, deleteNote, getNoteByID } from "./notesSlice";
 import { useEffect, useState } from "react";
-import { Button, Header, Loading } from "../../components";
 import axios from "../../axios";
-import { Tile } from "../../components";
-import { styled } from "@mui/material/styles";
-import { Image } from "../../components/Image";
-import DensitySmallOutlinedIcon from "@mui/icons-material/DensitySmallOutlined";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
-import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-import { deleteNoteFromEntry } from "../planEntries/planEntriesSlice";
-
-const StyledLayout = styled("div")`
-  width: 1050px;
-  display: flex;
-  justify-content: left;
-  gap: 15px;
-`;
-
-const LeftDiv = styled("div")`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-`;
-
-const RightDiv = styled("div")`
-  padding: 17px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  width: 850px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 15px;
-`;
-
-const DetailsDiv = styled("div")`
-  height: 170px;
-  display: flex;
-  padding: 15px;
-  flex-direction: row;
-`;
-
-const StyledInfo = styled("span")`
-  font-weight: bold;
-  letter-spacing: 2px;
-`;
-
-const ButtonDiv = styled("div")`
-  margin: 8px 0px;
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  justify-content: center;
-`;
-
-const MessageDiv = styled("div")`
-  padding: 7px;
-  width: 200px;
-  background-color: ${({ theme }) => theme.palette.secondary.main};
-  border-radius: 15px;
-`;
-
-const LeftColumn = styled("div")`
-  gap: 10px;
-  width: 60%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const RightColumn = styled("div")`
-  width: 40%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-`;
+import {
+  DetailsDiv,
+  ButtonDiv,
+  LeftColumn,
+  RightColumn,
+  ModificationTime,
+} from "../../components/detailNoteComponents";
+import {
+  StyledLayout,
+  LeftDiv,
+  RightDiv,
+  Info,
+  MessageDiv,
+} from "../../components/detailComponents";
+import {
+  AllEntriesButton,
+  ToEntryButton,
+  AllNotesButton,
+  EditButton,
+  DeleteButton,
+} from "../../components/buttons";
 
 export const DetailNote = () => {
-  const { lessonID, noteID } = useParams();
   const navigate = useNavigate();
-  const note = useSelector(getNoteByID(noteID));
   const dispatch = useDispatch();
+
+  const { lessonID, noteID } = useParams();
+  const note = useSelector(getNoteByID(noteID));
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("Loading plan entry...");
 
@@ -147,56 +97,27 @@ export const DetailNote = () => {
             <DetailsDiv>
               <LeftColumn>
                 <span>
-                  Title: <StyledInfo>{note.title}</StyledInfo>
+                  Title: <Info>{note.title}</Info>
                 </span>
                 <span>Content:</span>
                 <span>{note.content}</span>
               </LeftColumn>
               <RightColumn>
                 <span>
-                  Importance: <StyledInfo>{note.importance}</StyledInfo>
+                  Importance: <Info>{note.importance}</Info>
                 </span>
-                <span
-                  style={{
-                    fontSize: "13.5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-end",
-                  }}
-                >
+                <ModificationTime>
                   <span>Last modified:</span>
-                  <StyledInfo>{note.modificationTime}</StyledInfo>
-                </span>
+                  <Info>{note.modificationTime}</Info>
+                </ModificationTime>
               </RightColumn>
             </DetailsDiv>
             <ButtonDiv>
-              <Button
-                startIcon={<DensitySmallOutlinedIcon />}
-                onClick={onAllEntriesClicked}
-              >
-                All entries
-              </Button>
-              <Button
-                startIcon={<ArrowBackIosNewOutlinedIcon />}
-                onClick={onToEntryClicked}
-              >
-                To entry
-              </Button>
-              <Button
-                startIcon={<NoteAltOutlinedIcon />}
-                onClick={onAllNotesClicked}
-              >
-                All notes
-              </Button>
-              <Button startIcon={<EditOutlinedIcon />} onClick={onEditClicked}>
-                Edit
-              </Button>
-              <Button
-                startIcon={<DeleteOutlineOutlinedIcon />}
-                onClick={onDeleteClicked}
-              >
-                Delete
-              </Button>
+              <AllEntriesButton onClick={onAllEntriesClicked} />
+              <ToEntryButton onClick={onToEntryClicked} />
+              <AllNotesButton onClick={onAllNotesClicked} />
+              <EditButton onClick={onEditClicked} />
+              <DeleteButton onClick={onDeleteClicked} />
             </ButtonDiv>
           </RightDiv>
         </StyledLayout>

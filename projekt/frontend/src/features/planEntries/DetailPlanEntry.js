@@ -1,3 +1,10 @@
+import {
+  StyledLayout,
+  LeftDiv,
+  RightDiv,
+  Info,
+  MessageDiv,
+} from "../../components/detailComponents";
 import { addNewEntry, deleteEntry, getPlanEntryByID } from "./planEntriesSlice";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
 import { Header, Loading, Tile, Image } from "../../components";
@@ -6,14 +13,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "../../axios";
 import {
-  StyledLayout,
-  LeftDiv,
-  RightDiv,
   DetailsDiv,
   BothSides,
-  Info,
   ButtonDiv,
-  MessageDiv,
   ModificationTime,
 } from "../../components/detailPlanEntryComponents";
 import {
